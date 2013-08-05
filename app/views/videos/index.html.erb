@@ -1,0 +1,11 @@
+Odiun Videos
+
+<div style="margin-bottom: 15px; margin-top: 10px;">
+    <%= link_to "Add a Video", new_video_url %>
+</div>
+
+<div>
+    <% @videos.each do |video| %>
+        <%= link_to video.description, video_url(video) %><br />
+    <% end %>
+</div>
