@@ -50,3 +50,7 @@ group :test, :development, :staging do
   gem 'debugger'
 #  gem 'rspec-rails'
 end
+
+group :production do
+  gem "pg"
+end
