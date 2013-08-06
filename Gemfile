@@ -46,11 +46,11 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-group :test, :development, :staging do
+group :test, :development do
   gem 'debugger'
 #  gem 'rspec-rails'
 end
 
-group :production do
+group :production, :staging do
   gem "pg"
 end
