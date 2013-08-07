@@ -1,3 +1,6 @@
 language: ruby
 rvm:
   - ruby-2.0.0-p247
+
+notifications:
+  hipchat: 16360297a6daf81e97dec098e195c2@254364
