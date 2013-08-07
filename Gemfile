@@ -46,12 +46,12 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-group :test, :development do
+group :test, :development, :ci do
   gem 'debugger'
   gem 'rspec-rails'
 end
 
-group :test do
+group :test, :ci do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
