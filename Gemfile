@@ -48,9 +48,18 @@ end
 
 group :test, :development do
   gem 'debugger'
-#  gem 'rspec-rails'
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'ffaker'
+  gem 'shoulda-matchers'
+  gem 'selenium-webdriver'
 end
 
 group :production, :staging do
-  gem "pg"
+  gem 'pg'
 end
