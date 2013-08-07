@@ -25,9 +25,17 @@ test:
   encoding: utf8
   database: odiun_test
   pool: 5
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+
+ci:
+  adapter: mysql2
+  encoding: utf8
+  database: odiun_test
+  pool: 5
   username: travis
   password:
-#  socket: /tmp/mysql.sock
 
 staging:
   adapter: mysql2
