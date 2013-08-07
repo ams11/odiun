@@ -1,6 +1,7 @@
 language: ruby
 rvm:
   - ruby-2.0.0-p247
-
+before_script:
+  - mysql -e 'create database odiun_test;'
 notifications:
   hipchat: 16360297a6daf81e97dec098e195c2@254364
