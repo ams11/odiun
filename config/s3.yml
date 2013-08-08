@@ -1,20 +1,20 @@
 development: &DEFAULTS
-  bucket: "odiun_staging"
-  access_key_id: ""
-  secret_access_key: ""
+  bucket: "odiun-staging"
+  access_key_id: "AKIAIOREVTQRIDMV2YHA"
+  secret_access_key: "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"
 
 test:
   <<: *DEFAULTS
-  bucket: "odiun_staging"
+  bucket: "odiun-staging"
 
 ci:
   <<: *DEFAULTS
-  bucket: "odiun_staging"
+  bucket: "odiun-staging"
 
 production: &production
-  bucket: "odiun_staging"
-  access_key_id: ""
-  secret_access_key: ""
+  bucket: "odiun-staging"
+  access_key_id: "AKIAIOREVTQRIDMV2YHA"
+  secret_access_key: "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"
 
 staging:
   <<: *production
