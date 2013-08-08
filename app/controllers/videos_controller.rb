@@ -1,4 +1,8 @@
 class VideosController < ActionController::Base
+  layout "application"
+
+  before_filter :authenticate_user!, :only => [:new, :create]
+
   def new
     @video = Video.new
   end
