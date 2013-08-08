@@ -19,6 +19,7 @@ describe VideosController do
   describe "GET #show" do
     video = FactoryGirl.create(:video)
     params = { :id => video.id }
+
     it "returns success" do
       get :show, params
       expect(response.code).to eq("200")
