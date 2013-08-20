@@ -5,6 +5,8 @@ describe Video do
 
   subject { video }
 
-  it { should validate_presence_of(:description) }
+  it { should validate_presence_of(:name) }
   it { should validate_presence_of(:url) }
+  it { should validate_presence_of(:user) }
+  it { should validate_presence_of(:unique_id) }
 end

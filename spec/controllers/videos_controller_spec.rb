@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe VideosController do
+
+  before(:each) do
+    User.delete_all
+  end
+
   describe "GET #new" do
     it "returns success" do
       sign_in
@@ -28,12 +33,10 @@ describe VideosController do
 
   describe "POST #create" do
     let(:url) { "http://www.youtube.com/embed/YIwE-ECjbx8" }
-    let(:description) { "Oh, the Places You'll Go at Burning Man!" }
 
     it "creates a new Video" do
-      sign_in
-      params = { :video => { :url => url,
-                             :description => description }}
+      sign_in FactoryGirl.create(:user)
+      params = { :video => { :url => url } }
       expect { post :create, params }.to change(Video, :count).by(1)
     end
   end
