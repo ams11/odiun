@@ -53,7 +53,7 @@ end
 # gem 'debugger', group: [:development, :test]
 
 group :test, :development, :ci do
-  gem 'debugger'
+  gem 'byebug'    # Ruby debugger for Ruby 2.0.0
   gem 'rspec-rails'
 end
 

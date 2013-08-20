@@ -12,7 +12,7 @@
   <div>
     <%= f.label :image %><br/>
     <%= image_tag(@user.image.url(:medium)) rescue "" %><br />
-    <span style="font-weight:bold">Image Filename: </span><%= @press_article.image_url(:medium) rescue "" %><br />
+    <span style="font-weight:bold">Image Filename: </span><%= @user.image_url(:medium) rescue "" %><br />
     <%= f.file_field :image %>
   </div>
 
@@ -40,3 +40,13 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
 
 <%= link_to "Back", :back %>
+
+My Videos
+<div>
+    <% user = User.where(:id => @user.id).includes(:videos)[0]
+       unless user.nil? %>
+        <% user.videos.each do |video| %>
+            <div class="video-link"><%= link_to video.name, video_url(video) %>&nbsp; &nbsp; <%= link_to "Edit", edit_video_url(video) %>&nbsp; &nbsp; <%= link_to_delete(video_url(video)) %></div>
+        <% end %>
+    <% end %>
+</div>

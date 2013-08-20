@@ -1,0 +1,10 @@
+<%= render :partial => "shared/error_messages", :locals => { :target => @video } %>
+
+<%= form_for @video do |f| %>
+    <div>
+      <%= f.label t(:video_url) %>
+      <%= f.text_field :url, :size => 60, :value => ((params[:video][:url] rescue nil) || (@video.url rescue "")) %>
+    </div>
+
+    <%= f.submit %>
+<% end %>

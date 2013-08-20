@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130808002358) do
+ActiveRecord::Schema.define(version: 20130820063554) do
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -42,6 +42,12 @@ ActiveRecord::Schema.define(version: 20130808002358) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.integer  "provider"
+    t.integer  "unique_id"
+    t.boolean  "visible",       default: false
+    t.string   "thumbnail_url"
+    t.integer  "user_id"
   end
 
 end

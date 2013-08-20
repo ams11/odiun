@@ -20,4 +20,19 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  are_you_sure: "Are you sure?"
+  delete: "Delete"
+  description: "Description"
+  edit: "Edit"
+  errors:
+    generic: "An error has occurred, please try again"
+    users:
+      not_found: "User could not be found"
+    videos:
+      invalid: "is invalid"
+      no_provider_data: "Unable to retrieve video data from the provider"
+      not_found: "Video could not be found"
+      other_user: "You may not delete videos shared by another user"
+      url_invalid: "is invalid. Couldn't parse the video url"
+  name: "Name"
+  video_url: "Video URL"

@@ -6,6 +6,6 @@ My Odiun Videos
 
 <div>
     <% @videos.each do |video| %>
-        <%= link_to video.description, video_url(video) %><br />
+        <div class="video-link"><%= link_to video.name, video_url(video) %></div>
     <% end %>
 </div>
