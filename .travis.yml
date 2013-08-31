@@ -4,7 +4,7 @@ rvm:
 before_script:
   - mysql -e 'create database odiun_ci;'
 script:
-  - RAILS_ENV=ci bundle exec rake db:schema:load
-  - RAILS_ENV=ci bundle exec rspec
+  - RAILS_ENV=ci bundle exec rake db:drop db:create db:schema:load
+  - RAILS_ENV=ci bundle exec rake spec:suite:all
 notifications:
   hipchat: 16360297a6daf81e97dec098e195c2@254364
