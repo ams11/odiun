@@ -1,15 +1,15 @@
-$(document).ready(function() {
+$(document).on("ready page:change", function() {
 
     $('body').on('click', '.delete-resource', function() {
       var el = $(this);
       if (confirm(el.data("confirm"))) {
         $.ajax({
           type: 'POST',
-          url: $(this).attr("href"),
+          url: $(this).attr("data-url"),
           data: {
             _method: 'delete'
           },
-          dataType: 'script',
+          dataType: 'json',
           success: function(response) {
             el.parents("div.video-link").fadeOut('hide');
           },
@@ -18,6 +18,26 @@ $(document).ready(function() {
           }
         });
       }
+      return false;
+    });
+
+    $('body').on('click', '.toggle-feature', function() {
+      var el = $(this);
+        $.ajax({
+          type: 'POST',
+          url: $(this).attr("data-url"),
+          data: {
+            _method: 'post'
+          },
+          dataType: 'json',
+          success: function(response) {
+            el.text(el.text() == "Feature" ? "Un-feature" : "Feature");
+            $(".notice").text(response);
+          },
+          error: function(response, textStatus, errorThrown) {
+            $(".alert").text(response.responseText);
+          }
+        });
       return false;
     });
 });

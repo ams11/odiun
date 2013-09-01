@@ -3,8 +3,8 @@ include VideosHelper
 class VideosController < ActionController::Base
   layout "application"
 
-  before_filter :authenticate_user!, :only => [:new, :create, :update, :destroy]
-  before_filter :load_video, :only => [:edit, :show, :update, :destroy]
+  before_filter :authenticate_user!, :only => [:new, :create, :update, :destroy, :toggle_feature]
+  before_filter :load_video, :only => [:edit, :show, :update, :destroy, :toggle_feature]
 
   def new
     @video = Video.new
@@ -36,12 +36,12 @@ class VideosController < ActionController::Base
 
   def destroy
     if @video.nil?
-      render :text => t('errors.videos.not_found'), :layout => false, :status => :error
+      render :json => t('errors.videos.not_found').to_json, :status => 500
     elsif !user_has_owner_privileges?(@video.user)
-      render :text => t('errors.videos.other_user'), :layout => false, :status => :error
+      render :json => t('errors.videos.other_user').to_json, :status => 500
     else
-      Video.destroy @video unless @video.nil?
-      render :text => "", :layout => false
+      Video.destroy @video
+      render :json => "Success".to_json, :status => :ok
     end
   end
 
@@ -55,6 +55,15 @@ class VideosController < ActionController::Base
     end
   end
 
+  def toggle_feature
+    if @video.nil?
+      render :json => t('errors.videos.not_found').to_json, :status => 500
+    else
+      @video.update_attribute(:featured, !@video.featured)
+      render :json => "Success".to_json, :status => :ok
+    end
+  end
+
   private
 
   def video_params
@@ -62,6 +71,7 @@ class VideosController < ActionController::Base
   end
 
   def load_video
-    @video = Video.find_by_id(params[:id])
+    id = params[:video_id] || params[:id]
+    @video = Video.find_by_id(id)
   end
 end

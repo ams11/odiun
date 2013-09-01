@@ -44,7 +44,12 @@ My Videos
     <% user = User.where(:id => @user.id).includes(:videos)[0]
        unless user.nil? %>
         <% user.videos.each do |video| %>
-            <div class="video-link"><%= link_to video.name, video_url(video) %>&nbsp; &nbsp; <%= link_to "Edit", edit_video_url(video) %>&nbsp; &nbsp; <%= link_to_delete(video_url(video)) %></div>
+            <div class="video-link">
+              <%= link_to video.name, video_url(video) %>&nbsp; &nbsp;
+              <%= link_to "Edit", edit_video_url(video) %>&nbsp; &nbsp;
+              <%= link_to_delete(video_url(video)) %>&nbsp; &nbsp;
+              <%= link_to_feature(video_toggle_feature_url(video), {:name => t(video.featured? ? :unfeature : :feature)} ) %>
+            </div>
         <% end %>
     <% end %>
 </div>

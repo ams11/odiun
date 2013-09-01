@@ -41,5 +41,24 @@ describe VideosController do
     end
   end
 
+  describe "POST #toggle_feature" do
+    let(:video) { create(:video, :user => create(:user)) }
+
+    it "can change the featured status" do
+      sign_in video.user
+      video.featured.should be false      # initially, :feature should default to false
+
+      # check that we can toggle to true
+      post :toggle_feature, :video_id => video.id
+      video_update = Video.find_by_id video.id
+      video_update.featured.should be true
+
+      # check that we can toggle back to false
+      post :toggle_feature, :video_id => video.id
+      video_update = Video.find_by_id video.id
+      video_update.featured.should be false
+    end
+  end
+
 
 end

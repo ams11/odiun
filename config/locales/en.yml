@@ -40,5 +40,6 @@ en:
   login: "Login"
   logout: "Logout"
   name: "Name"
+  unfeature: "Un-feature"
   video_upload: "Upload Video"
   video_url: "Video URL"
