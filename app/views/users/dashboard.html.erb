@@ -1,0 +1,15 @@
+<%= link_to(content_tag(:div, t(:account), :class => "header-text first"), edit_user_registration_path) %>
+<div class="header-text last">My Videos</div>
+
+<p style="clear:both" />
+
+<div>
+    <% @videos.each do |video| %>
+        <div class="video-link">
+          <%= link_to video.name, video_url(video) %>&nbsp; &nbsp;
+          <%= link_to "Edit", edit_video_url(video) %>&nbsp; &nbsp;
+          <%= link_to_delete(video_url(video)) %>&nbsp; &nbsp;
+          <%= link_to_feature(video_toggle_feature_url(video), {:name => t(video.featured? ? :unfeature : :feature)} ) %>
+        </div>
+    <% end %>
+</div>

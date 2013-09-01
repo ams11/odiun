@@ -7,6 +7,10 @@ Odiun::Application.routes.draw do
     post :toggle_feature
   end
 
+  resources :users do
+    get :dashboard
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

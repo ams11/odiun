@@ -2,10 +2,6 @@ require 'spec_helper'
 
 describe VideosController do
 
-  before(:each) do
-    User.delete_all
-  end
-
   describe "GET #new" do
     it "returns success" do
       sign_in

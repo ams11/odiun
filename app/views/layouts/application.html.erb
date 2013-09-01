@@ -24,7 +24,7 @@
                             <tr>
                               <td align="left" valign="bottom" height="105">
                                 <% if user_signed_in? %>
-                                    <%= link_to(content_tag(:div, t(:account), :class => "header-text first"), edit_user_registration_path) %>
+                                    <%= link_to(content_tag(:div, t(:dashboard), :class => "header-text first"), user_dashboard_path(current_user)) %>
                                     <%= link_to(content_tag(:div, t(:logout), :class => "header-text"), destroy_user_session_path, :method => :delete) %>
                                 <% else %>
                                     <%= link_to(content_tag(:div, t(:login), :class => "header-text first"), new_user_session_path) %>
