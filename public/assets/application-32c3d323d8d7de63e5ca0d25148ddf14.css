@@ -1,0 +1,119 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+ */
+
+body {
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  background-image: url(/assets/bg-theater-line01.gif);
+  background-repeat: repeat-x;
+  font: 14px/1.5em Avenir, "Trebuchet MS", Sans-serif; }
+  body a {
+    text-decoration: none; }
+
+/* CSS Document */
+.top-banner {
+  height: 105px;
+  width: 100%;
+  background-image: url(/assets/top-banner01.gif);
+  background-repeat: repeat-x; }
+
+.header-content {
+  height: 105px;
+  width: 1000px;
+  background-image: url(/assets/top-banner01.gif);
+  background-repeat: repeat-x;
+  margin-left: auto;
+  margin-right: auto; }
+
+.header01-03 {
+  width: 423px;
+  height: 105px;
+  float: left; }
+
+.header02 {
+  width: 154px;
+  height: 90px;
+  margin-top: 15px;
+  float: left; }
+
+.theater-banner {
+  background-image: url(/assets/theater-bg01.png);
+  width: 1260px;
+  height: 450px; }
+
+.video-window {
+  width: 1000px;
+  height: 450px;
+  margin-left: auto;
+  margin-right: auto; }
+
+.header-text {
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #00a7ff;
+  margin-bottom: 10px;
+  font-style: normal;
+  text-transform: uppercase;
+  border-right: thin;
+  border-right-style: solid;
+  border-right-color: #FFF;
+  float: left;
+  padding-right: 15px;
+  padding-left: 10px; }
+
+.header-text:hover {
+  color: #fff; }
+
+.first {
+  padding-left: 0px !important; }
+
+.last {
+  border-right: none; }
+
+.upload-video-button {
+  width: 153px;
+  height: 25px;
+  padding-top: 8px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #FFF;
+  background-color: #00a7ff;
+  margin-top: 60px;
+  margin-left: 267px;
+  text-transform: uppercase; }
+
+.upload-video-button:hover {
+  color: #FFF;
+  background-color: #8bd7ff; }
+
+.videos {
+  margin: 30px 15px 20px 15px;
+  width: 100%; }
+  .videos .video-link {
+    float: left;
+    width: 315px;
+    font-size: 12px;
+    text-align: center; }
+    .videos .video-link img {
+      width: 300px;
+      border: 0; }
+
+.info {
+  text-align: left;
+  margin-left: 8px; }
+  .info .name {
+    font-weight: bold; }
