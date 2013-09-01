@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130820063554) do
+ActiveRecord::Schema.define(version: 20130901004633) do
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20130820063554) do
     t.boolean  "visible",       default: false
     t.string   "thumbnail_url"
     t.integer  "user_id"
+    t.boolean  "featured",      default: false
   end
 
 end

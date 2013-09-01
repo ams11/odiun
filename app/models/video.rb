@@ -8,6 +8,8 @@ class Video < ActiveRecord::Base
 
   belongs_to :user
 
+  scope :featured,   -> { where(featured: true) }
+
   def update_video! video_params
     url = video_params[:url]
     type, unique_id = match_url(url)

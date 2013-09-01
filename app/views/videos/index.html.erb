@@ -1,11 +1,11 @@
-My Odiun Videos
-
-<div style="margin-bottom: 15px; margin-top: 10px;">
-    <%= link_to "Add a Video", new_video_url %>
-</div>
-
-<div>
+<div class="videos">
     <% @videos.each do |video| %>
-        <div class="video-link"><%= link_to video.name, video_url(video) %></div>
+        <div class="video-link">
+          <%= link_to image_tag(video.thumbnail_url), video_url(video), :title => video.name %>
+          <div class="info">
+            <div class="name"><%= link_to(video.name, video_url(video)) %></div>
+            <div class="description"><%= raw(truncate(video.description, :length => 100)) %></div>
+          </div>
+        </div>
     <% end %>
 </div>

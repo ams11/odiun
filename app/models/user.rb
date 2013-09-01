@@ -24,4 +24,8 @@ class User < ActiveRecord::Base
                     :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
                     :url => '/users/:id/:style/:basename.:extension',
                     :path => ':rails_root/public/users/:id/:style/:basename.:extension'
+
+  def name
+    "#{self.first_name} #{self.last_name}"
+  end
 end

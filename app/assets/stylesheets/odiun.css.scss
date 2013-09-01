@@ -1,0 +1,122 @@
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-image: image-url('bg-theater-line01.gif');
+	background-repeat: repeat-x;
+    font:14px/1.5em Avenir, "Trebuchet MS", Sans-serif;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+@charset "UTF-8";
+/* CSS Document */
+
+.top-banner {
+	height:105px;
+	width:100%;
+	background-image: image-url('top-banner01.gif');
+	background-repeat:repeat-x;
+}
+.header-content {
+	height:105px;
+	width:1000px;
+	background-image: image-url('top-banner01.gif');
+	background-repeat:repeat-x;
+	margin-left:auto;
+	margin-right:auto;
+}
+.header01-03 {
+	width:423px;
+	height:105px;
+	float:left;
+}
+.header02 {
+	width:154px;
+	height:90px;
+	margin-top:15px;
+	float:left;
+}
+.theater-banner {
+	background-image:image-url('theater-bg01.png');
+	width:1260px;
+	height:450px;
+
+}
+.video-window {
+	width:1000px;
+	height:450px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.header-text {
+	text-align:left;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#00a7ff;
+	margin-bottom:10px;
+	font-style:normal;
+	text-transform:uppercase;
+	border-right:thin;
+	border-right-style:solid;
+	border-right-color:#FFF;
+	float:left;
+    padding-right: 15px;
+    padding-left: 10px;
+}
+.header-text:hover {
+	color:#fff;
+}
+.first {
+  padding-left: 0px !important;
+}
+
+.last {
+  border-right: none;
+}
+
+.upload-video-button {
+	width:153px;
+	height:25px;
+	padding-top:8px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#FFF;
+	background-color:#00a7ff;
+	margin-top:60px;
+	margin-left:267px;
+  text-transform: uppercase;
+}
+.upload-video-button:hover {
+	color:#FFF;
+	background-color:#8bd7ff;
+}
+
+.videos {
+  margin: 30px 15px 20px 15px;
+  width: 100%;
+
+  .video-link {
+    float: left;
+    width: 315px;
+    font-size: 12px;
+    text-align: center;
+
+    img {
+      width: 300px;
+      border: 0;
+    }
+  }
+}
+
+.info {
+  text-align: left;
+  margin-left: 8px;
+
+  .name {
+    font-weight: bold;
+  }
+}

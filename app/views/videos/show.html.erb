@@ -1,5 +1,8 @@
-<iframe width="560" height="315" src="<%= @video.url %>" frameborder="0" allowfullscreen></iframe>
+<div class="info">
+  <div class="name"><%= @video.name %></div>
+  <div class="by">By <%= @video.user.name %></div>
+</div>
 
-<div>
-    <%= @video.description %>
+<div style="margin-top: 20px;">
+    <%= raw(@video.description) %>
 </div>

@@ -47,6 +47,12 @@ class VideosController < ActionController::Base
 
   def index
     @videos = Video.all
+    featured_vids = Video.featured
+    if featured_vids.count == 0
+      @video = @videos[0]
+    else
+      @video = featured_vids[rand(0..(featured_vids.count-1))]
+    end
   end
 
   private

@@ -20,7 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  about: "About"
+  account: "Account"
   are_you_sure: "Are you sure?"
+  dashboard: "Dashboard"
   delete: "Delete"
   description: "Description"
   edit: "Edit"
@@ -34,5 +37,8 @@ en:
       not_found: "Video could not be found"
       other_user: "You may not delete videos shared by another user"
       url_invalid: "is invalid. Couldn't parse the video url"
+  login: "Login"
+  logout: "Logout"
   name: "Name"
+  video_upload: "Upload Video"
   video_url: "Video URL"
