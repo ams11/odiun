@@ -15,7 +15,9 @@ module VideoClient
         :url => "http://player.vimeo.com/video/#{response_data[0]["id"]}",
         :name => response_data[0]["title"],
         :description => response_data[0]["description"],
-        :thumbnail => response_data[0]["thumbnail_large"]
+        :thumbnail => response_data[0]["thumbnail_large"],
+        :thumbnail_large => response_data[0]["thumbnail_large"],
+        :allow_embed => true
        }
     end
 

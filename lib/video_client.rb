@@ -44,7 +44,7 @@ module VideoClient
         end
       else
         type = :youtube
-        unique_id = url.sub(youtube_regexes[:browser], "").split("&")[0]
+        unique_id = Rack::Utils.parse_query(URI.parse(url).query)["v"]
       end
     else
       type = :youtube

@@ -19,6 +19,7 @@ class Video < ActiveRecord::Base
     else
       video_data = get_video_metadata_from_provider(type, unique_id)
 
+      video_data[:error] = I18n.t('errors.videos.cant_embed') if video_data[:allow_embed].present? && !video_data[:allow_embed]
       if video_data.blank? || video_data[:error].present?
         self.errors.add(:url, "#{I18n.t('errors.video.invalid')}. #{video_data[:error] || I18n.t('errors.videos.no_provider_data')}")
       else
@@ -26,6 +27,7 @@ class Video < ActiveRecord::Base
                                :name => video_data[:name],
                                :description => video_data[:description],
                                :thumbnail_url => video_data[:thumbnail],
+                               :large_thumbnail_url => video_data[:thumbnail_large],
                                :unique_id => video_data[:id],
                                :provider => type.to_s)
       end
@@ -50,6 +52,7 @@ class Video < ActiveRecord::Base
                              :name => video_data[:name],
                              :description => video_data[:description],
                              :thumbnail_url => video_data[:thumbnail],
+                             :large_thumbnail_url => video_data[:thumbnail_large],
                              :unique_id => video_data[:id],
                              :provider => type.to_s,
                              :user => user)

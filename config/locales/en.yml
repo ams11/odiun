@@ -32,6 +32,7 @@ en:
     users:
       not_found: "User could not be found"
     videos:
+      cant_embed: "The host of this video does not allow for this video to be shared."
       invalid: "is invalid"
       no_provider_data: "Unable to retrieve video data from the provider"
       not_found: "Video could not be found"

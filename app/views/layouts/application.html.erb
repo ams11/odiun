@@ -10,58 +10,35 @@
 <body>
 
     <div class="main-wrapper">
-      <div align="center">
-        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td height="176" align="center" valign="top">
-              <div class="top-banner">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td align="center" valign="top" height="105">
-                      <div class="header-content">
-                        <div class="header01-03">
-                          <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                              <td align="left" valign="bottom" height="105">
-                                <% if user_signed_in? %>
-                                    <%= link_to(content_tag(:div, t(:dashboard), :class => "header-text first"), user_dashboard_path(current_user)) %>
-                                    <%= link_to(content_tag(:div, t(:logout), :class => "header-text"), destroy_user_session_path, :method => :delete) %>
-                                <% else %>
-                                    <%= link_to(content_tag(:div, t(:login), :class => "header-text first"), new_user_session_path) %>
-                                <% end %>
-                                <%= link_to(content_tag(:div, t(:about), :class => "header-text last"), "#") %>
-                              </td>
-                            </tr>
-                          </table>
-                        </div>
-                        <div class="header02">
-                          <%= link_to image_tag("odiun-logo01.png", :style => "height: 69px; width: 154px; border: 0"), root_url %>
-                        </div>
-                        <div class="header01-03">
-                          <%= link_to content_tag(:div, t(:video_upload), :class => "upload-video-button"), new_video_url %>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                </table>
+      <div style="text-align: center" class="top-banner">
+        <div class="header-content">
+            <div class="header01-03">
+              <div class="links-bar">
+                <% if user_signed_in? %>
+                    <%= link_to(content_tag(:div, t(:dashboard), :class => "header-text first"), user_dashboard_path(current_user)) %>
+                    <%= link_to(content_tag(:div, t(:logout), :class => "header-text"), destroy_user_session_path, :method => :delete) %>
+                <% else %>
+                    <%= link_to(content_tag(:div, t(:login), :class => "header-text first"), new_user_session_path) %>
+                <% end %>
+                <%= link_to(content_tag(:div, t(:about), :class => "header-text last"), "#") %>
               </div>
-              <% if @video.present? && !@video.new_record? %>
-                  <div class="theater-banner">
-                    <div class="video-window">
-                        <iframe width="1010" height="450" src="<%= @video.url %>" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                  </div>
-              <% end %>
-            </td>
-          </tr>
-        </table>
+            </div>
+            <div class="header02">
+                <%= link_to image_tag("odiun-logo01.png", :style => "height: 69px; width: 154px; border: 0"), root_url %>
+            </div>
+            <div class="header01-03">
+              <%= link_to content_tag(:div, t(:video_upload), :class => "upload-video-button"), new_video_url %>
+            </div>
+        </div>
       </div>
-    </div>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
+      <% if notice || alert %>
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+      <% end %>
     <%= yield %>
+
+    </div>
 
 </body>
 </html>

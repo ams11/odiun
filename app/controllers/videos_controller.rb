@@ -10,6 +10,13 @@ class VideosController < ActionController::Base
     @video = Video.new
   end
 
+  def show
+    unless @video.present?
+      flash[:alert] = t('errors.videos.not_found')
+      redirect_to videos_url
+    end
+  end
+
   def create
     @video = Video.create_video(video_params, current_user)
 
@@ -19,7 +26,7 @@ class VideosController < ActionController::Base
     elsif @video.errors.any?
       render :new
     else
-      redirect_to video_url(@video)
+      redirect_to user_dashboard_path(current_user)
     end
   end
 
@@ -29,7 +36,7 @@ class VideosController < ActionController::Base
       if @video.errors.any?
         render :edit
       else
-        redirect_to video_url(@video)
+        redirect_to user_dashboard_path(current_user)
       end
     end
   end

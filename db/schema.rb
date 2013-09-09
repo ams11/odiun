@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130901004633) do
+ActiveRecord::Schema.define(version: 20130909030158) do
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -45,10 +45,11 @@ ActiveRecord::Schema.define(version: 20130901004633) do
     t.string   "name"
     t.integer  "provider"
     t.integer  "unique_id"
-    t.boolean  "visible",       default: false
+    t.boolean  "visible",             default: false
     t.string   "thumbnail_url"
     t.integer  "user_id"
-    t.boolean  "featured",      default: false
+    t.boolean  "featured",            default: false
+    t.string   "large_thumbnail_url"
   end
 
 end
