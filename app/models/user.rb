@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 
   def turn_into_voter!
     unless self.videos.empty?
-      self.roles << Role.find_by_name(:voter) unless self.has_role?(:voter)
+      self.roles << Role.voter_role unless self.has_role?(:voter)
     end
   end
 

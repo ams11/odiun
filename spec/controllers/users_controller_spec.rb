@@ -3,7 +3,7 @@ require 'spec_helper'
 describe UsersController do
 
   describe "GET #dashboard" do
-    let(:user) { create(:user) }
+    let(:user) { create(:voter_user) }
 
     it "returns success" do
       sign_in user

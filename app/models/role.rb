@@ -6,4 +6,12 @@ class Role < ActiveRecord::Base
   def self.default_role
     Role.find_or_create_by(name: DEFAULT_ROLE_NAME)
   end
+
+  def self.voter_role
+    Role.find_or_create_by(:name => :voter)
+  end
+
+  def self.admin_role
+    Role.find_or_create_by(:name => :admin)
+  end
 end
