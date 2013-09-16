@@ -26,6 +26,7 @@ class VideosController < ActionController::Base
     elsif @video.errors.any?
       render :new
     else
+      current_user.turn_into_voter!
       redirect_to user_dashboard_path(current_user)
     end
   end

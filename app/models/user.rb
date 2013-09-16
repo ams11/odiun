@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
     }
 
   has_many :videos
+  has_and_belongs_to_many :roles
+  after_create :add_default_role!
 
   has_attached_file :image,
                     :styles => { :medium => "200x200>",
@@ -27,5 +29,29 @@ class User < ActiveRecord::Base
 
   def name
     "#{self.first_name} #{self.last_name}"
+  end
+
+  def add_default_role!
+    self.roles << Role.default_role unless self.has_role?(Role::DEFAULT_ROLE_NAME)
+  end
+
+  def turn_into_voter!
+    unless self.videos.empty?
+      self.roles << Role.find_by_name(:voter) unless self.has_role?(:voter)
+    end
+  end
+
+  def admin?
+    self.has_role?(:admin)
+  end
+
+  def voter?
+    self.has_role?(:voter)
+  end
+
+  protected
+
+  def has_role? role_in_question
+    self.roles.where(:name => role_in_question.to_s).any?
   end
 end

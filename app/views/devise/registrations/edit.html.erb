@@ -1,5 +1,5 @@
 <div class="header-text first">My Account</div>
-<%= link_to(content_tag(:div, t(:videos_my), :class => "header-text last"), user_dashboard_path(current_user)) %>
+<%= link_to(content_tag(:div, t(:videos_my), :class => "header-text last"), user_dashboard_path(current_user)) if current_user.voter? %>
 
 <p style="clear:both" />
 
