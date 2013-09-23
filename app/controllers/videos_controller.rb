@@ -5,9 +5,14 @@ class VideosController < ActionController::Base
 
   before_filter :authenticate_user!, :only => [:new, :create, :update, :destroy, :toggle_feature]
   before_filter :load_video, :only => [:edit, :show, :update, :destroy, :toggle_feature]
+  before_filter :get_genres, :only => [:new, :edit]
 
   def new
     @video = Video.new
+  end
+
+  def get_genres
+    @genres_collection = Genre.all.collect { |genre| [genre.name, genre.id] }
   end
 
   def show
@@ -18,12 +23,14 @@ class VideosController < ActionController::Base
   end
 
   def create
-    @video = Video.create_video(video_params, current_user)
+    genre = Genre.find(params[:genre][:id]) rescue nil
+    @video = Video.create_video(video_params, genre, current_user)
 
     if @video.nil?
       flash[:error] = t('errors.generic')
       redirect_to root_url
     elsif @video.errors.any?
+      get_genres
       render :new
     else
       current_user.turn_into_voter!
@@ -32,11 +39,14 @@ class VideosController < ActionController::Base
   end
 
   def update
+    genre = Genre.find(params[:genre][:id]) rescue nil
     if @video.present?
-      @video.update_video!(video_params)
+      @video.update_video!(video_params, genre)
       if @video.errors.any?
+        get_genres
         render :edit
       else
+        flash[:notice] = "Video successfully updated"
         redirect_to user_dashboard_path(current_user)
       end
     end
@@ -55,11 +65,9 @@ class VideosController < ActionController::Base
 
   def index
     @videos = Video.all
-    featured_vids = Video.featured
-    if featured_vids.count == 0
-      @video = @videos[0]
-    else
-      @video = featured_vids[rand(0..(featured_vids.count-1))]
+    @featured_vids = Video.featured.order(:score).limit(10)
+    if @featured_vids.count == 0
+      @featured_vids = @videos.limit(10)
     end
   end
 

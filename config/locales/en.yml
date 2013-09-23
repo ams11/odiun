@@ -38,6 +38,7 @@ en:
       not_found: "Video could not be found"
       other_user: "You may not delete videos shared by another user"
       url_invalid: "is invalid. Couldn't parse the video url"
+  genre: "Genre"
   login: "Login"
   logout: "Logout"
   name: "Name"

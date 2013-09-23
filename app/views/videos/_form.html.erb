@@ -2,8 +2,15 @@
 
 <%= form_for @video do |f| %>
     <div>
-      <%= f.label t(:video_url) %>
-      <%= f.text_field :url, :size => 60, :value => ((params[:video][:url] rescue nil) || (@video.url rescue "")) %>
+      <p>
+          <%= f.label t(:video_url) %>
+          <%= f.text_field :url, :size => 60, :value => ((params[:video][:url] rescue nil) || (@video.url rescue "")) %>
+      </p>
+
+      <p>
+        <%= label :video, :genre %>
+        <%= select(:genre, :id, @genres_collection, { :include_blank => true, :selected => (params[:genre][:id] rescue nil) || @video.genre_id }) %>
+      </p>
     </div>
 
     <%= f.submit %>

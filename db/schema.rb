@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130916060127) do
+ActiveRecord::Schema.define(version: 20130923050902) do
+
+  create_table "genres", force: true do |t|
+    t.string "name"
+  end
 
   create_table "roles", force: true do |t|
     t.string "name"
@@ -54,11 +58,13 @@ ActiveRecord::Schema.define(version: 20130916060127) do
     t.string   "name"
     t.integer  "provider"
     t.integer  "unique_id"
-    t.boolean  "visible",             default: false
+    t.boolean  "visible",                                      default: false
     t.string   "thumbnail_url"
     t.integer  "user_id"
-    t.boolean  "featured",            default: false
+    t.boolean  "featured",                                     default: false
     t.string   "large_thumbnail_url"
+    t.decimal  "score",               precision: 10, scale: 4, default: 0.0
+    t.integer  "genre_id"
   end
 
 end

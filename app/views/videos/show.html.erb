@@ -1,7 +1,19 @@
+<div style="height: 450px" class="top-banner">
+    <div style="background-image: url(<%= asset_path("bg-theater-line01.gif") %>); background-repeat: repeat-x;"></div>
+    <div class="theater-banner" style="margin-left: 318px;">
+      <div class="video-window">
+        <iframe id="player" type="text/html" width="600" height="450" src="<%= @video.url %>" frameborder="0"></iframe>
+      </div>
+    </div>
+</div>
+
 <div class="info">
   <div class="name"><%= @video.name %></div>
   <div class="by">By <%= @video.user.name %></div>
+  <div>Genre: <%= @video.genre.name rescue "" %></div>
 </div>
+
+
 
 <div style="margin-top: 20px;">
     <%= raw(@video.description) %>

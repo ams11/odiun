@@ -7,10 +7,11 @@ class Video < ActiveRecord::Base
   validates_presence_of :name, :url, :unique_id, :user
 
   belongs_to :user
+  belongs_to :genre
 
   scope :featured,   -> { where(featured: true) }
 
-  def update_video! video_params
+  def update_video! video_params, genre
     url = video_params[:url]
     type, unique_id = match_url(url)
 
@@ -29,12 +30,13 @@ class Video < ActiveRecord::Base
                                :thumbnail_url => video_data[:thumbnail],
                                :large_thumbnail_url => video_data[:thumbnail_large],
                                :unique_id => video_data[:id],
-                               :provider => type.to_s)
+                               :provider => type.to_s,
+                               :genre => genre)
       end
     end
   end
 
-  def self.create_video video_params, user
+  def self.create_video video_params, genre, user
     url = video_params[:url]
     type, unique_id = match_url(url)
 
@@ -55,6 +57,7 @@ class Video < ActiveRecord::Base
                              :large_thumbnail_url => video_data[:thumbnail_large],
                              :unique_id => video_data[:id],
                              :provider => type.to_s,
+                             :genre => genre,
                              :user => user)
       end
     end

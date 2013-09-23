@@ -40,4 +40,15 @@ $(document).on("ready page:change", function() {
         });
       return false;
     });
+
+    $("#slides").slidesjs({
+      play: {
+          active: true,
+          auto: true,
+          interval: 15000,
+          swap: true,
+          pauseOnHover: true,
+          restartDelay: 2500
+        }
+    });
 });

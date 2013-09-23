@@ -1,3 +1,5 @@
-Editing video <%= @video.description %>
+<div>Editing video `<%= @video.description %>`</div>
+
+<iframe id="player" type="text/html" width="400" height="244" src="<%= @video.url %>" frameborder="0"></iframe>
 
 <%= render :partial => "form", :locals => {} %>
