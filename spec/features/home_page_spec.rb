@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "the home page", :type => :feature do
+describe "the home page", :type => :feature, :js => true do
   subject { page }
 
   before :each do
@@ -12,6 +12,7 @@ describe "the home page", :type => :feature do
 
   it "visits the home page" do
     visit root_path
+    byebug
     @videos.each do |video|
       should have_xpath "//a[@href=\"#{video_url(video)}\"]"
     end

@@ -1,20 +1,35 @@
-<div style="height: 450px" class="top-banner">
-    <div style="background-image: url(<%= asset_path("bg-theater-line01.gif") %>); background-repeat: repeat-x;"></div>
-    <div class="theater-banner" style="margin-left: 318px;">
+<div>
+    <div style="height:70px; background-color:#FFF;">
+      <div class="video-head-name"><%= @video.name %></div>
+    </div>
+
+    <div class="theater-banner video-table">
       <div class="video-window">
-        <iframe id="player" type="text/html" width="600" height="450" src="<%= @video.url %>" frameborder="0"></iframe>
+        <iframe id="player" type="text/html" width="640" height="480" src="<%= @video.url %>" frameborder="0"></iframe>
       </div>
     </div>
-</div>
 
-<div class="info">
-  <div class="name"><%= @video.name %></div>
-  <div class="by">By <%= @video.user.name %></div>
-  <div>Genre: <%= @video.genre.name rescue "" %></div>
-</div>
+  <div class="video-breakdown">
+    <div class="video-descr-spacer">
+      <table>
+          <tr>
+            <td width="25%" height="120" align="left" valign="top">
+              <div class="video-percentage"><%= @video.score.round %>%</div>
+              <div class="video-more-user">
+                <%= link_to t(:more_from, :email => @video.user.email), "#" %>
+              </div>
+            </td>
+            <td width="75%" colspan="2" rowspan="2" align="left" valign="top">
+              <div class="video-description"><%= raw(@video.description) %></div>
+            </td>
+          </tr>
+          <tr>
+            <td height="55" align="left" valign="top"><div class="video-social">SOCIAL MEDIA FPO</div></td>
+          </tr>
+      </table>
+    </div>
+    <div class="video-statsplus-box">VOTING FPO</div>
+    <div class="video-comments-box">COMMENTS FPO</div>
+  </div>
 
-
-
-<div style="margin-top: 20px;">
-    <%= raw(@video.description) %>
 </div>

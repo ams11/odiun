@@ -45,6 +45,7 @@ en:
   genre: "Genre"
   login: "Login"
   logout: "Logout"
+  more_from: "More from %{email}"
   name: "Name"
   privacy_policy: "Privacy Policy"
   submit: "Submit"

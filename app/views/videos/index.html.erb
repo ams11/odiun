@@ -1,4 +1,10 @@
-<div>
+<style>
+  body {
+    background-image: url('<%= asset_path("bg-theater-line02.gif") %>');
+  }
+</style>
+
+<div id="featured-videos-scroll">
     <div class="theater-banner">
       <div class="video-window" id="slides">
         <% @featured_vids.each do |video| %>

@@ -3,7 +3,6 @@ body {
  	margin-top: 0px;
  	margin-right: 0px;
  	margin-bottom: 0px;
- 	background-image: image-url('bg-theater-line02.gif');
  	background-repeat: repeat-x;
     font:14px/1.5em Avenir, "Trebuchet MS", Sans-serif;
 
@@ -63,13 +62,18 @@ table {
 	margin-top:15px;
 	float:left;
 }
+
 .theater-banner {
-  background-image: image-url('theater-bg02.png');
   width:900px;
   height:480px;
   margin-left:auto;
   margin-right:auto;
 }
+
+#featured-videos-scroll .theater-banner {
+  background-image: image-url('theater-bg02.png');
+}
+
 .video-window {
   width:640px;
   height:480px;
@@ -284,6 +288,22 @@ a:hover.slidesjs-stop {
   }
 }
 
+// Video Page
+
+.video-table {
+	height:480px;
+	width:100%;
+	background-color:#e9ebef;
+	border-top:thin;
+	border-top-style:solid;
+    border-top-color:#CCC;
+	border-top-width:thin;
+	border-bottom:thin;
+	border-bottom:solid;
+	border-bottom-color:#CCC;
+	border-bottom-width:thin;
+}
+
 // VIDEO TABLE
 
 .video-table01 {
@@ -323,6 +343,22 @@ a:hover.slidesjs-stop {
 	font-size:13px;
 	text-transform:uppercase;
 	color:#0CF;
+}
+
+.video-head-name {
+	width:640px;
+	height:30px;
+	padding-top:40px;
+	margin-left:auto;
+	margin-right:auto;
+	font-size:22px;
+	color:#99a6c0;
+	text-align:left;
+	font-family:"Helvetica Neue", Arial, sans-serif;
+    font-weight:300;
+	font-style:normal;
+	line-height:25px;
+	letter-spacing:1px
 }
 
 // GENRE TABLE
@@ -576,4 +612,121 @@ ul {
 	font-style:normal;
 	line-height:25px;
 	letter-spacing:1px
+}
+
+// VIDEO BREAKDOWN
+
+.video-breakdown {
+	width:638px;
+	height:auto;
+	padding-top:20px;
+    padding-bottom:25px;
+	background-color:#e2e3e4;
+	margin-left:auto;
+	margin-right:auto;
+    border-right:thin;
+	border-right-style:solid;
+	border-right-color:#ccc;
+	border-left:thin;
+	border-left-style:solid;
+	border-left-color:#ccc;
+	margin-bottom:-50px;
+}
+.video-percentage {
+	width:136px;
+	height:57px;
+	background-image: image-url('icarus-rating-shell01.png');
+    background-repeat: no-repeat;
+	font-size:50px;
+	color:#99a6c0;
+	text-align:right;
+	font-family:"Helvetica Neue", Arial, sans-serif;
+	padding-top:25px;
+	padding-left:5px;
+	letter-spacing:0px;
+    font-weight:200;
+	font-style:normal;
+	margin-left:20px;
+	border:thin;
+	border-style:solid;
+	border-color:#ccc;
+}
+.video-more-user {
+	width:131px;
+	height:auto;
+	font-size:12px;
+	color:#99a6c0;
+	text-align:left;
+	background-color:#999;
+	font-family:"Helvetica Neue", Arial, sans-serif;
+	padding-top:8px;
+	padding-right:5px;
+	padding-left:5px;
+	padding-bottom:10px;
+	margin-top:-1px;
+	letter-spacing:0px;
+    font-weight:200;
+	font-style:normal;
+	margin-left:20px;
+	border:thin;
+	border-style:solid;
+	border-color:#ccc;
+}
+.video-social {
+	width:131px;
+	height:34px;
+	font-size:12px;
+	color:black;
+	text-align:left;
+	font-family:"Helvetica Neue", Arial, sans-serif;
+	padding-top:8px;
+	padding-right:5px;
+	padding-left:5px;
+	padding-bottom:10px;
+	margin-top:-1px;
+	letter-spacing:0px;
+    font-weight:200;
+	font-style:normal;
+	margin-left:20px;
+	border:thin;
+	border-style:solid;
+	border-color:#ccc;
+}
+.video-description {
+	width:410px;
+	height:auto;
+	font-size:12px;
+	color:#333;
+	text-align:justify;
+	background-color:white;
+	font-family:Arial, Helvetica, sans-serif;
+	line-height:17px;
+	padding-top:10px;
+	padding-right:15px;
+	padding-left:15px;
+	padding-bottom:10px;
+    font-weight:200;
+	font-style:normal;
+	margin-left:12px;
+}
+.video-descr-spacer {
+	margin-bottom:7px;
+}
+.video-statsplus-box {
+	width:570px;;
+	height:325px;
+	padding:10px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:4px;
+	background-color:#FFF;
+}
+.video-comments-box {
+	width:570px;;
+	height:360px;
+	padding:10px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:25px;
+	background-color:#FFF;
 }
