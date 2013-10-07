@@ -1,0 +1,57 @@
+<div class="footer">
+  <table>
+    <tr>
+        <td width="16%" align="left" valign="top">
+          <div class="footer-list">
+            <ul>
+              <li><%= link_to t(:about), "#" %></li>
+              <li><%= link_to t(:contact_us), "#" %></li>
+              <li><%= link_to t(:privacy_policy), "#" %></li>
+              <li><%= link_to t(:faq), "#" %></li>
+              <li><%= link_to t(:blog), "#" %></li>
+              <% if user_signed_in? %>
+                  <% if current_user.voter? %>
+                      <li><%= link_to(t(:dashboard), user_dashboard_path(current_user)) %></li>
+                  <% else %>
+                      <li><%= link_to(t(:account), edit_user_registration_path) %></li>
+                  <% end %>
+                  <li><%= link_to(t(:logout), destroy_user_session_path, :method => :delete) %></li>
+              <% else %>
+                  <li><%= link_to(t(:login), new_user_session_path) %></li>
+              <% end %>
+            </ul>
+          </div>
+
+          <div class="footer-copyright">Odiun © 2013</div>
+        </td>
+
+        <td width="32%" align="left" valign="top">
+          <div class="input-div-footer-news" user_email="user_email">
+            <%= form_tag :url => url_for do |f| %>
+              <h2>
+                <%= label_tag :email, t(:enter_email), :class =>"footer-newsletter-header" %>
+                <%= email_field_tag :email, nil, :class => "input" %>
+              </h2>
+              <%= submit_tag t(:submit).upcase, :class => "submit-button02" %>
+            <% end %>
+          </div>
+        </td>
+
+        <td width="52%" align="left" valign="top">
+          <div>
+            <div class="footer-follow-head">Get Social</div>
+
+            <div class="footer-follow-icons">
+                <%= link_to content_tag(:div, image_tag("followus-fb01.png")), "#" %>
+                <%= link_to content_tag(:div, image_tag("followus-tw01.png")), "#" %>
+                <%= link_to content_tag(:div, image_tag("followus-yt01.png")), "#" %>
+                <%= link_to content_tag(:div, image_tag("followus-ggl01.png")), "#" %>
+                <%= link_to content_tag(:div, image_tag("followus-blgr01.png")), "#" %>
+                <%= link_to content_tag(:div, image_tag("followus-rdt01.png")), "#" %>
+            </div>
+          </div>
+
+        </td>
+      </tr>
+  </table>
+</div>

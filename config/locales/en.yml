@@ -20,13 +20,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  about: "About"
+  about: "About Odiun"
   account: "Account"
   are_you_sure: "Are you sure?"
+  blog: "Blog"
+  contact_us: "Contact Us"
   dashboard: "Dashboard"
   delete: "Delete"
   description: "Description"
   edit: "Edit"
+  enter_email: "Enter your E-Mail for Updates!"
   errors:
     generic: "An error has occurred, please try again"
     users:
@@ -38,10 +41,13 @@ en:
       not_found: "Video could not be found"
       other_user: "You may not delete videos shared by another user"
       url_invalid: "is invalid. Couldn't parse the video url"
+  faq: "FAQ"
   genre: "Genre"
   login: "Login"
   logout: "Logout"
   name: "Name"
+  privacy_policy: "Privacy Policy"
+  submit: "Submit"
   unfeature: "Un-feature"
   video_upload: "Submit a video"
   video_url: "Video URL"

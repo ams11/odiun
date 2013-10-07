@@ -64,11 +64,13 @@ class VideosController < ActionController::Base
   end
 
   def index
-    @videos = Video.all
-    @featured_vids = Video.featured.order(:score).limit(10)
+    @videos = Video.all.order(:score).limit(8)
+    @featured_vids = Video.featured.order(:score).limit(8)
     if @featured_vids.count == 0
-      @featured_vids = @videos.limit(10)
+      @featured_vids = @videos.limit(8)
     end
+    @genres = Genre.all
+    @genres_last_index = @genres.count - 1
   end
 
   def toggle_feature

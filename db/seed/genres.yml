@@ -1,8 +1,11 @@
-genre1:
-  name: genre1
+action:
+  name: Action
 
-genre2:
-  name: genre2
+drama:
+  name: Drama
 
-genre3:
-  name: genre3
+comedy:
+  name: Comedy
+
+horror:
+  name: Horror

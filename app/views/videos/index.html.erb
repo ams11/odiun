@@ -17,14 +17,20 @@
   </div>
 </div>
 
-<div class="videos">
-    <% @videos.each do |video| %>
-        <div class="video-link">
-          <%= link_to image_tag(video.thumbnail_url), video_url(video), :title => video.name %>
-          <div class="info">
-            <div class="name"><%= link_to(video.name, video_url(video)) %></div>
-            <div class="description"><%= raw(truncate(video.description, :length => 100)) %></div>
-          </div>
-        </div>
+<div class="video-table01">
+    <% @videos.each_with_index do |video, index| %>
+      <div class="video-module-end01 <%= "video-module-last" if ((index+1)%4 == 0) %>">
+        <%= link_to image_tag(video.thumbnail_url), video_url(video), :title => video.name %>
+        <%= link_to(content_tag(:div, video.name, :class => "video-module-text"), video_url(video)) %>
+      </div>
     <% end %>
+</div>
+
+<div class="genre-table01">
+  <div class="genre-title">Videos by Genre</div>
+  <div class="genre-box">
+    <% @genres.each_with_index do |genre, index| %>
+        <%= link_to content_tag(:div, genre.name, :class=>"genre-icon #{"genre-icon-last" if (index == @genres_last_index) }"), "#" %>
+    <% end %>
+  </div>
 </div>
