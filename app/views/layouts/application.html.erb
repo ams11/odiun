@@ -13,18 +13,17 @@
       <div style="text-align: center" class="top-banner">
         <div class="header-content">
             <div class="header01-03">
-              <div class="links-bar">
+              <div class="links-bar" style="margin-left:<%= user_signed_in? ? (current_user.voter? ? "80px" : "95px") : "135px" %>">
                 <% if user_signed_in? %>
                     <% if current_user.voter? %>
                         <%= link_to(content_tag(:div, t(:dashboard), :class => "header-text first"), user_dashboard_path(current_user)) %>
                     <% else %>
                         <%= link_to(content_tag(:div, t(:account), :class => "header-text first"), edit_user_registration_path) %>
                     <% end %>
-                    <%= link_to(content_tag(:div, t(:logout), :class => "header-text"), destroy_user_session_path, :method => :delete) %>
+                    <%= link_to(content_tag(:div, t(:logout), :class => "header-text last"), destroy_user_session_path, :method => :delete) %>
                 <% else %>
-                    <%= link_to(content_tag(:div, t(:login), :class => "header-text first"), new_user_session_path) %>
+                    <%= link_to(content_tag(:div, t(:login), :class => "header-text first last"), new_user_session_path) %>
                 <% end %>
-                <%= link_to(content_tag(:div, t(:about), :class => "header-text last"), "#") %>
               </div>
             </div>
             <div class="header02">

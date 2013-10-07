@@ -1,8 +1,10 @@
 body {
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-bottom: 0px;
+  margin-left: 0px;
+ 	margin-top: 0px;
+ 	margin-right: 0px;
+ 	margin-bottom: 0px;
+ 	background-image: image-url('bg-theater-line02.gif');
+ 	background-repeat: repeat-x;
     font:14px/1.5em Avenir, "Trebuchet MS", Sans-serif;
 
   a {
@@ -14,10 +16,10 @@ body {
 /* CSS Document */
 
 .top-banner {
-	height:105px;
-	width:100%;
-	background-image: image-url('top-banner01.gif');
-	background-repeat:repeat-x;
+  height:105px;
+  width:100%;
+  background-image: image-url('top-banner01.gif');
+  background-repeat:repeat-x;
 }
 .header-content {
 	height:105px;
@@ -39,21 +41,37 @@ body {
 	float:left;
 }
 .theater-banner {
-	background-image: image-url('theater-bg01.png');
-	width:1260px;
-	height:450px;
-
+  background-image: image-url('theater-bg02.png');
+  width:900px;
+  height:480px;
+  margin-left:auto;
+  margin-right:auto;
 }
 .video-window {
-	width:1000px;
-	height:450px;
-	margin-left:auto;
-	margin-right:auto;
-    text-align: center;
+  width:640px;
+  height:480px;
+  margin-left:auto;
+  margin-right:auto;
 
   img {
-    height: 450px;
+    margin-top: 10px;
+    max-height: 440px;
   }
+}
+
+.movie-shadow {
+  width: 100%;
+  text-align: center;
+
+  > img {
+    width: 743px;
+    height: 48px;
+  }
+}
+
+.slidesjs-container {
+  margin-top: 10px;
+  height: 433px !important;
 }
 
 .header-text {
@@ -99,7 +117,7 @@ body {
 	color:#FFF;
 	background-color:#00a7ff;
 	margin-top:60px;
-	margin-left:267px;
+	margin-left:242px;
     text-transform: uppercase;
 }
 .upload-video-button:hover {

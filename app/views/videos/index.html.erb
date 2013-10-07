@@ -1,15 +1,20 @@
-<div style="height: 450px" class="top-banner">
-    <div style="background-image: url(<%= asset_path("bg-theater-line01.gif") %>); background-repeat: repeat-x;"></div>
-    <div class="theater-banner" style="margin-left: 318px;">
-      <div class="video-window" id="slides" style="width:640px; height:480px;padding-top: 12px;">
+<div>
+    <div class="theater-banner">
+      <div class="video-window" id="slides">
         <% @featured_vids.each do |video| %>
-            <div>
+            <div style="text-align: center;">
               <span class="slide-caption"><%= video.name %></span>
                 <%= link_to image_tag(video.large_thumbnail_url), video_url(video) %>
             </div>
         <% end %>
       </div>
     </div>
+</div>
+<div class="movie-shadow">
+  <%= image_tag("movie-shadow01.png") %>
+  <div>
+    <%= link_to image_tag("icarus-power01.png"), "#" %>
+  </div>
 </div>
 
 <div class="videos">

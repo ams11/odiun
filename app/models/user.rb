@@ -22,10 +22,10 @@ class User < ActiveRecord::Base
                                  :thumb => "40x40>" },
                     :default_style => :medium,
                     :default_url => '/images/missing.png',
-                    :storage => ((Rails.env.production? || Rails.env.staging?) ? :s3 : :s3),#:filesystem),
+                    :storage => ((Rails.env.production? || Rails.env.staging?) ? :s3 : :filesystem),
                     :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
                     :url => '/users/:id/:style/:basename.:extension',
-                    :path => ':rails_root/public/users/:id/:style/:basename.:extension'
+                    :path => (Rails.env.production? || Rails.env.staging?) ? 'users/:id/:style/:basename.:extension' : ':rails_root/public/users/:id/:style/:basename.:extension'
 
   def name
     "#{self.first_name} #{self.last_name}"
