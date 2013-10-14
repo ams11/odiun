@@ -16,7 +16,7 @@
       <table>
           <tr>
             <td width="25%" height="120" align="left" valign="top">
-              <div class="video-percentage"><%= @video.score.round rescue "0" %>%</div>
+              <div class="video-percentage"><%= @video.score.round rescue "" %>%</div>
               <div class="video-more-user">
                 <%= link_to t(:more_from, :email => @video.user.email), "#" %>
               </div>
