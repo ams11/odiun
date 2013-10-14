@@ -53,11 +53,13 @@ class VideosController < ActionController::Base
   end
 
   def vote
-    @video.score = params[:video][:score]
+    old_value = @video.score
+    @video.score = params[:video][:score] rescue old_value
     @video.save
     if @video.valid?
       redirect_to video_path(@video)
     else
+      @video.score = old_value
       render :show
     end
   end

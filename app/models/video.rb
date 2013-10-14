@@ -12,6 +12,8 @@ class Video < ActiveRecord::Base
 
   scope :featured,   -> { where(featured: true) }
 
+  acts_as_commentable
+
   def update_video! video_params, genre
     url = video_params[:url]
     type, unique_id = match_url(url)
