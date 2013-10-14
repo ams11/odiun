@@ -3,11 +3,10 @@
     <h2><%= t(:attention_needed) %>:</h2>
      <ul>
      <% target.errors.full_messages.each_with_index do |msg, index| %>
-         <% msg = target.errors.full_messages[index] %>
        <li>
-           <%= msg %>
+         <%= msg %>
          <span class="black">
-         <%= ((index + 1) != target.errors.full_messages.length)? '&' : '' %>
+            <%= ((index + 1) != target.errors.full_messages.length)? '&' : '' %>
          </span>
        </li>
      <% end %>

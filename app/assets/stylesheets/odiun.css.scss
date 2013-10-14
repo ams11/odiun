@@ -10,14 +10,6 @@ body {
     text-decoration: none;
   }
 
-  a:link {
-      text-decoration: none;
-      color: #FFF;
-  }
-  a:visited {
-      text-decoration: none;
-      color: #FFF;
-  }
   a:hover {
       text-decoration: none;
       color: #0CF;
@@ -25,6 +17,18 @@ body {
   a:active {
       text-decoration: none;
       color: #0CF;
+  }
+
+  .header-content, .footer {
+    a:link {
+        text-decoration: none;
+        color: #FFF;
+    }
+
+    a:visited {
+        text-decoration: none;
+        color: #FFF;
+    }
   }
 }
 
@@ -735,6 +739,8 @@ ul {
 .video-description {
 	width:410px;
 	height:auto;
+    max-height: 300px;
+    overflow-y: scroll;
 	font-size:12px;
 	color:#333;
 	text-align:justify;
@@ -754,12 +760,13 @@ ul {
 }
 .video-statsplus-box {
 	width:570px;;
-	height:325px;
+	height:100px;
 	padding:10px;
 	margin-left:auto;
 	margin-right:auto;
 	margin-bottom:4px;
 	background-color:#FFF;
+    text-align: center;
 }
 .video-comments-box {
 	width:570px;;
@@ -784,4 +791,18 @@ ul {
 	font-family:Arial, Helvetica, sans-serif;
 	margin-bottom:-25px;
 	color:#0CF !important;
+}
+
+#slider-range-min {
+  width: 250px;
+  margin-top: 5px;
+  margin-left: 160px;
+}
+
+#rating_value {
+  border: 0;
+  color: #f6931f;
+  font-weight: bold;
+  background-color: white;
+  width: 35px;
 }

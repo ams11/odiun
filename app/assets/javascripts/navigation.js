@@ -51,4 +51,15 @@ $(document).on("ready page:change", function() {
           restartDelay: 2500
         }
     });
+
+    $( "#slider-range-min" ).slider({
+      value: parseInt($( "#rating_value" ).text()),
+      min: 0,
+      max: 100,
+      slide: function( event, ui ) {
+        $( "#rating_value" ).text( ui.value + "%" );
+        $("#video_score").val(ui.value);
+      }
+    });
+
 });

@@ -4,7 +4,7 @@ class VideosController < ActionController::Base
   layout "application"
 
   before_filter :authenticate_user!, :only => [:new, :create, :update, :destroy, :toggle_feature]
-  before_filter :load_video, :only => [:edit, :show, :update, :destroy, :toggle_feature]
+  before_filter :load_video, :only => [:edit, :show, :update, :destroy, :toggle_feature, :vote]
   before_filter :get_genres, :only => [:new, :edit]
 
   def new
@@ -52,6 +52,16 @@ class VideosController < ActionController::Base
     end
   end
 
+  def vote
+    @video.score = params[:video][:score]
+    @video.save
+    if @video.valid?
+      redirect_to video_path(@video)
+    else
+      render :show
+    end
+  end
+
   def destroy
     if @video.nil?
       render :json => t('errors.videos.not_found').to_json, :status => 500
@@ -91,5 +101,12 @@ class VideosController < ActionController::Base
   def load_video
     id = params[:video_id] || params[:id]
     @video = Video.find_by_id(id)
+
+    if @video.nil?
+      respond_to do |format|
+        format.html { redirect_to videos_path }
+        format.json { render :json => { :error => t('errors.videos.notfound') }.to_json, :status => 500 }
+      end
+    end
   end
 end

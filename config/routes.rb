@@ -5,6 +5,7 @@ Odiun::Application.routes.draw do
 
   resources :videos do
     post :toggle_feature
+    post :vote
   end
 
   resources :users do

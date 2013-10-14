@@ -37,6 +37,7 @@ en:
     videos:
       cant_embed: "The host of this video does not allow for this video to be shared."
       invalid: "is invalid"
+      invalid_rating: "value is invalid. A value must be between 0 and 100."
       no_provider_data: "Unable to retrieve video data from the provider"
       not_found: "Video could not be found"
       other_user: "You may not delete videos shared by another user"

@@ -5,6 +5,7 @@ include VideoClient
 class Video < ActiveRecord::Base
 
   validates_presence_of :name, :url, :unique_id, :user
+  validates_numericality_of :score, :greater_than_or_equal_to => 0.0, :less_than_or_equal_to => 100.0, :message => I18n.t('errors.videos.invalid_rating'), :allow_nil => true
 
   belongs_to :user
   belongs_to :genre

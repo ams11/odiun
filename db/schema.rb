@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130923050902) do
+ActiveRecord::Schema.define(version: 20131014045014) do
 
   create_table "genres", force: true do |t|
     t.string "name"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20130923050902) do
     t.integer  "user_id"
     t.boolean  "featured",                                     default: false
     t.string   "large_thumbnail_url"
-    t.decimal  "score",               precision: 10, scale: 4, default: 0.0
+    t.decimal  "score",               precision: 10, scale: 4
     t.integer  "genre_id"
   end
 

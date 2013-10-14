@@ -1,3 +1,5 @@
+<%= render :partial => "shared/error_messages", :locals => { :target => @video } %>
+
 <div>
     <div style="height:70px; background-color:#FFF;">
       <div class="video-head-name"><%= @video.name %></div>
@@ -14,7 +16,7 @@
       <table>
           <tr>
             <td width="25%" height="120" align="left" valign="top">
-              <div class="video-percentage"><%= @video.score.round %>%</div>
+              <div class="video-percentage"><%= @video.score.round rescue "0" %>%</div>
               <div class="video-more-user">
                 <%= link_to t(:more_from, :email => @video.user.email), "#" %>
               </div>
@@ -28,7 +30,16 @@
           </tr>
       </table>
     </div>
-    <div class="video-statsplus-box">VOTING FPO</div>
+    <div class="video-statsplus-box">
+      <%= form_for @video, :url => video_vote_url(@video), :html => { :method => :post } do |f| %>
+          <div class="rating_container">
+            <div><span>Vote on this video. </span>Your score: <span id="rating_value" ><%= @video.score || 50 %>%</span></div>
+            <div id="slider-range-min"></div>
+            <%= f.hidden_field :score, :value => (@video.score || 50) %>
+            <%= f.submit "Vote" %>
+          </div>
+      <% end %>
+    </div>
     <div class="video-comments-box">COMMENTS FPO</div>
   </div>
 

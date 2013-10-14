@@ -56,5 +56,33 @@ describe VideosController do
     end
   end
 
+  describe "POST #vote" do
+    let(:video) { create(:video) }
+
+    it "can change the video rating" do
+      sign_in video.user
+
+      post :vote, :video_id => video.id, :video => { :score => 75 }
+      response.should redirect_to(video_path(video))
+      video.reload
+      video.score.should == 75
+    end
+
+    it "does not update the score if the vote value is invalid" do
+      sign_in video.user
+      old_score = video.score
+
+      post :vote, :video_id => video.id, :video => { :score => 101 }
+      response.should render_template("videos/show")
+      video.reload
+      video.score.should == old_score
+    end
+
+    it "redirects to videos path for an invalid video id" do
+      post :vote, :video_id => video.id + rand(1000..2000), :video => { :score => 75 }
+      response.should redirect_to(videos_path)
+    end
+  end
+
 
 end
