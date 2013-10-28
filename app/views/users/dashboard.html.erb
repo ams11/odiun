@@ -1,15 +1,42 @@
-<%= link_to(content_tag(:div, t(:account), :class => "header-text first"), edit_user_registration_path) %>
-<div class="header-text last">My Videos</div>
-
-<p style="clear:both" />
-
-<div>
-    <% @videos.each do |video| %>
-        <div class="video-link">
-          <%= link_to video.name, video_url(video) %>&nbsp; &nbsp;
-          <%= link_to "Edit", edit_video_url(video) %>&nbsp; &nbsp;
-          <%= link_to_delete(video_url(video)) %>&nbsp; &nbsp;
-          <%= link_to_feature(video_toggle_feature_url(video), {:name => t(video.featured? ? :unfeature : :feature)} ) %>
+<div class="dash-table-01">
+  <div style="width: 640px; margin-left: auto; margin-right:auto;">
+    <div class="dash-name"><%= @user.name %></div>
+    <div>
+      <div class="dash-pic" style="float: left">
+        <%= image_tag(@user.image.url(:small)) %>
+      </div>
+      <div class="dash-dboard" style="float: left">
+        <div class="table-text">
+          <span class="dash-status01">Voting Level:</span>
+          <span class="dash-status02">Director</span>
         </div>
-    <% end %>
+        <div class="table-text">
+          <span class="dash-status01" style="top: 25px">Total Votes:</span>
+          <span class="dash-vnumbers">10,709</span>
+        </div>
+        <div style="top:80px; position: relative;">
+          <%= link_to(content_tag(:span, t(:account), :class => "button-links dash-mbutton", :style => "padding: 15px 10px;"), edit_user_registration_path) %>
+          <%= link_to(content_tag(:span, t(:vote), :class => "button-links dash-sbutton", :style => "padding: 15px 129px;"), "#") %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="width:100%; background-color:#FFF; height:auto;">
+  <div class="dash-myvids">
+    <div class="video-descr-spacer"></div>
+    <div class="dash-statsplus-box">
+      <div class="dash-videos">
+        <% @videos.each_with_index do |video, index| %>
+          <div class="video-module-end01 <%= "video-module-last" if ((index+1)%2 == 0) %>">
+            <%= link_to image_tag(video.thumbnail_url), video_url(video), :title => video.name %>
+            <%= link_to(content_tag(:div, "My #{video.genre.name rescue ""} short '#{video.name}'", :class => "video-module-text"), video_url(video)) %>
+          </div>
+        <% end %>
+      </div>
+      <%= link_to(content_tag(:span, t(:show_more), :class => "button-links dash-showbutton", :style => "padding: 15px 211px;"), "#") %>
+      <div style="height: 15px; width: 100%">&nbsp;</div>
+    </div>
+  </div>
 </div>

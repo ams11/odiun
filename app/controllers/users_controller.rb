@@ -15,7 +15,7 @@ class UsersController < ActionController::Base
       redirect_to edit_user_registration_path
     else
 
-      @videos = current_user.videos
+      @videos = current_user.videos.limit(6)
     end
   end
 end

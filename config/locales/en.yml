@@ -21,7 +21,7 @@
 
 en:
   about: "About Odiun"
-  account: "Account"
+  account: "Manage Account"
   are_you_sure: "Are you sure?"
   blog: "Blog"
   contact_us: "Contact Us"
@@ -49,8 +49,10 @@ en:
   more_from: "More from %{email}"
   name: "Name"
   privacy_policy: "Privacy Policy"
+  show_more: "Show More Videos"
   submit: "Submit"
   unfeature: "Un-feature"
   video_upload: "Submit a video"
   video_url: "Video URL"
   videos_my: "My Videos"
+  vote: "Vote"

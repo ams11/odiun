@@ -17,9 +17,9 @@ class User < ActiveRecord::Base
   after_create :add_default_role!
 
   has_attached_file :image,
-                    :styles => { :medium => "200x200>",
-                                 :small => "100x100>",
-                                 :thumb => "40x40>" },
+                    :styles => { :medium => "200x200#",
+                                 :small => "125x125#",
+                                 :thumb => "40x40#" },
                     :default_style => :medium,
                     :default_url => '/images/missing.png',
                     :storage => ((Rails.env.production? || Rails.env.staging?) ? :s3 : :filesystem),
