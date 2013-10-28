@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
                     :storage => ((Rails.env.production? || Rails.env.staging?) ? :s3 : :filesystem),
                     :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
                     :url => (Rails.env.production? || Rails.env.staging?) ? ':s3_alias_url' : '/users/:id/:style/:basename.:extension',
-                    :s3_host_alias => "s3-us-west-1.amazonaws.com",
+                    :s3_host_alias => "s3-us-west-1.amazonaws.com/odiun-staging",
                     :path => (Rails.env.production? || Rails.env.staging?) ? 'users/:id/:style/:basename.:extension' : ':rails_root/public/users/:id/:style/:basename.:extension'
 
   def name
