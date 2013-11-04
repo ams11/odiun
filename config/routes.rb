@@ -10,6 +10,7 @@ Odiun::Application.routes.draw do
 
   resources :users do
     get :dashboard
+    get :vote
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,36 @@
+<div class="votevids-dboard votevid-table-02" style="padding-bottom: 0px;">
+  <div style="width: 650px; margin-left: auto; margin-right:auto;">
+    <div style="background-color: #fff; height: 50px; padding: 0px 5px">
+      <div class="alternate-account-image" style="float: left">
+        <%= image_tag(@user.image.url(:thumb)) %>
+      </div>
+        <div style="top:11px; position: relative;">
+          <%= link_to(content_tag(:span, t(:dashboard), :class => "button-links dash-mbutton", :style => "padding: 14px 54px;"), user_dashboard_path(@user)) %>
+          <%= link_to(content_tag(:span, t(:vote), :class => "button-links dash-sbutton", :style => "padding: 14px 160px;"), user_vote_path(@user)) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="width:100%; background-color:#FFF; height:auto;">
+  <div class="votevids-myvids">
+    <div class="video-descr-spacer"></div>
+    <div class="votevids-name">VOTE</div>
+    <div class="votevids-statsplus-box">
+      <div class="votevids-videos2">
+        <% @videos.each_with_index do |video, index| %>
+          <div class="video-module-end01 <%= "video-module-last" if ((index+1)%3 == 0) %>">
+            <%= link_to image_tag(video.thumbnail_url), video_url(video), :title => video.name %>
+            <div class="film-name">
+              <span style="margin-right: 30px;"><%= video.genre.name rescue "" %></span>
+              <%= link_to(content_tag(:span, "My #{video.genre.name rescue ""} short '#{video.name}'", :class => "video-module-text"), video_url(video)) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <%= link_to(content_tag(:span, t(:show_more), :class => "button-links dash-showbutton", :style => "padding: 15px 366px;"), "#") %>
+      <div style="height: 15px; width: 100%">&nbsp;</div>
+    </div>
+  </div>
+</div>

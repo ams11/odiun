@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   has_attached_file :image,
                     :styles => { :medium => "200x200#",
                                  :small => "125x125#",
-                                 :thumb => "40x40#" },
+                                 :thumb => "45x45#" },
                     :default_style => :medium,
                     :default_url => '/images/missing.png',
                     :storage => ((Rails.env.production? || Rails.env.staging?) ? :s3 : :filesystem),
@@ -48,6 +48,10 @@ class User < ActiveRecord::Base
 
   def voter?
     self.has_role?(:voter)
+  end
+
+  def vote_videos
+    Video.all.limit(9)
   end
 
   protected

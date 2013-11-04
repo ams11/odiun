@@ -4,10 +4,9 @@ class UsersController < ActionController::Base
   layout "application"
 
   before_filter :authenticate_user!, :only => :dashboard
+  before_filter :load_user, :only => [:dashboard, :vote]
 
   def dashboard
-    id = params[:user_id] || params[:id]
-    @user = User.where(:id => id).includes(:videos)[0]
     if @user.blank? || (@user != current_user && !current_user.admin?)
       flash[:alert] = t('errors.users.not_found')
       redirect_to root_url
@@ -16,6 +15,31 @@ class UsersController < ActionController::Base
     else
 
       @videos = current_user.videos.limit(6)
+    end
+  end
+
+  def vote
+    @videos = @user.vote_videos
+  end
+
+  private
+
+  def load_user
+    id = params[:user_id] || params[:id]
+    @user = User.where(:id => id).includes(:videos)[0]
+
+    error = t('errors.users.not_found')
+
+    if @user.nil?
+      respond_to do |format|
+        format.html do
+          flash[:alert] = error
+          redirect_to root_path
+        end
+        format.json do
+          render :json => { :message => error }.to_json, :status => 500
+        end
+      end
     end
   end
 end

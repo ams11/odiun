@@ -16,7 +16,7 @@
         </div>
         <div style="top:80px; position: relative;">
           <%= link_to(content_tag(:span, t(:account), :class => "button-links dash-mbutton", :style => "padding: 15px 10px;"), edit_user_registration_path) %>
-          <%= link_to(content_tag(:span, t(:vote), :class => "button-links dash-sbutton", :style => "padding: 15px 129px;"), "#") %>
+          <%= link_to(content_tag(:span, t(:vote), :class => "button-links dash-sbutton", :style => "padding: 15px 129px;"), user_vote_path(@user)) %>
         </div>
       </div>
     </div>

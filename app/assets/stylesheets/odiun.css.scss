@@ -327,6 +327,11 @@ a:hover.slidesjs-stop {
   img {
     max-width: 280px;
   }
+
+  .film-name {
+    height: 42px;
+    overflow-y: hidden;
+  }
 }
 .video-module-last {
 	margin-right: 0px;
@@ -1112,4 +1117,96 @@ ul {
 	font-style:normal;
 	line-height:25px;
 	letter-spacing:2px;
+}
+
+.votevids-dboard {
+	width:498px;
+	height:45px;
+	margin-left:auto;
+    margin-right:auto;
+	background-color:#FFF;
+	padding:5px;
+}
+
+.alternate-account-image {
+	margin-left:0px; margin-bottom:5px; margin-right:5px; width:45px; height:45px;
+}
+
+.votevids-myvids {
+	width:948px;
+	height:auto;
+	padding-top:3px;
+    padding-bottom:25px;
+	background-color:#f6f7f8;
+	margin-left:auto;
+	margin-right:auto;
+    border-right:thin;
+	border-right-style:solid;
+	border-right-color:#ccc;
+	border-left:thin;
+	border-left-style:solid;
+	border-left-color:#ccc;
+	margin-bottom:-50px;
+	margin-top:3px;
+}
+
+.votevids-name {
+	width:100%;
+	height:30px;
+	margin-top:12px;
+	margin-bottom:10px;
+	margin-left:auto;
+	margin-right:auto;
+	font-size:30px;
+	color:#CCC;
+	text-align:center;
+	font-family:"Helvetica Neue", Arial, sans-serif;
+    font-weight:200;
+	font-style:normal;
+	line-height:25px;
+	letter-spacing:2px;
+}
+
+.votevids-statsplus-box {
+	width:910px;
+	height:auto;
+	padding:10px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:4px;
+	background-color:#FFF;
+}
+
+.votevids-videos2 {
+	width:910px;
+	height:250px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:15px;
+}
+
+.votevids-genretag {
+	width:65px;
+	padding-top:4px;
+	padding-left:5px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-style:normal;
+	font-size:13px;
+	color:black;
+	text-align:left;
+	float:left;
+}
+
+.votevid-table-02 {
+	height:55px;
+	width:100%;
+	background-color:#f6f7f8;
+	border-top:thin;
+	border-top-style:solid;
+    border-top-color:#CCC;
+	border-top-width:thin;
+	border-bottom:thin;
+	border-bottom:solid;
+	border-bottom-color:#CCC;
+	border-bottom-width:thin;
 }
