@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131014055509) do
+ActiveRecord::Schema.define(version: 20131210080953) do
 
   create_table "comments", force: true do |t|
     t.string   "title",            limit: 50, default: ""
@@ -32,6 +32,13 @@ ActiveRecord::Schema.define(version: 20131014055509) do
     t.string "name"
   end
 
+  create_table "ranks", force: true do |t|
+    t.integer "rank",                                        null: false
+    t.decimal "videos_watched",     precision: 10, scale: 4, null: false
+    t.decimal "original_selection", precision: 10, scale: 4, null: false
+    t.decimal "personal_content",   precision: 10, scale: 4, null: false
+  end
+
   create_table "roles", force: true do |t|
     t.string "name"
   end
@@ -39,6 +46,13 @@ ActiveRecord::Schema.define(version: 20131014055509) do
   create_table "roles_users", id: false, force: true do |t|
     t.integer "role_id", null: false
     t.integer "user_id", null: false
+  end
+
+  create_table "user_genre_scores", force: true do |t|
+    t.integer "user_id",                                           null: false
+    t.integer "genre_id",                                          null: false
+    t.decimal "score",      precision: 10, scale: 4, default: 0.0
+    t.string  "score_type",                                        null: false
   end
 
   create_table "users", force: true do |t|
@@ -60,6 +74,7 @@ ActiveRecord::Schema.define(version: 20131014055509) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "rank_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

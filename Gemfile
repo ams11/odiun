@@ -61,6 +61,10 @@ group :test, :development, :ci do
   gem 'rspec-rails'
 end
 
+group :development do
+  gem 'annotate', ">=2.6.0"
+end
+
 group :test, :ci do
   gem 'capybara'
   gem 'database_cleaner'
