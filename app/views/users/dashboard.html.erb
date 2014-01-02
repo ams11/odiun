@@ -8,11 +8,11 @@
       <div class="dash-dboard" style="float: left">
         <div class="table-text">
           <span class="dash-status01">Voting Level:</span>
-          <span class="dash-status02">Director</span>
+          <span class="dash-status02"><%= @user.rank.name %></span>
         </div>
         <div class="table-text">
           <span class="dash-status01" style="top: 25px">Total Votes:</span>
-          <span class="dash-vnumbers">10,709</span>
+          <span class="dash-vnumbers"><%= @user.user_votes.count %></span>
         </div>
         <div style="top:80px; position: relative;">
           <%= link_to(content_tag(:span, t(:account), :class => "button-links dash-mbutton", :style => "padding: 15px 10px;"), edit_user_registration_path) %>

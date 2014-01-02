@@ -22,6 +22,9 @@
 #  image_file_size        :integer
 #  image_updated_at       :datetime
 #  rank_id                :integer
+#  genre_id               :integer
+#  videos_watched_count   :integer
+#  user_genre_score_id    :integer
 #
 
 FactoryGirl.define do
@@ -31,6 +34,8 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     password "secret11"
     password_confirmation "secret11"
+    rank { create(:rank, :rank => 0) }
+    original_genre { create(:genre) }
   end
 
   factory :admin_user, :parent => :user do
@@ -38,7 +43,7 @@ FactoryGirl.define do
   end
 
   factory :voter_user, :parent => :user do
-    roles { [Role.find_by_name('voter') || FactoryGirl.create(:role, :name => 'voter')] }
+    rank { create(:rank, :rank => 1) }
   end
 
 end

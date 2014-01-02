@@ -32,7 +32,7 @@ describe VideosController do
 
     it "creates a new Video" do
       sign_in FactoryGirl.create(:user)
-      params = { :video => { :url => url } }
+      params = { :video => { :url => url }, :genre => { :id => create(:genre).id } }
       expect { post :create, params }.to change(Video, :count).by(1)
     end
   end
@@ -57,25 +57,38 @@ describe VideosController do
   end
 
   describe "POST #vote" do
-    let(:video) { create(:video) }
+    let(:genre) { create(:genre) }
+    let(:user) { create(:voter_user, :original_genre => genre) }
+    let(:video) { create(:video, :genre => genre, :user => user) }
 
     it "can change the video rating" do
       sign_in video.user
 
+      previous_score = video.get_score
       post :vote, :video_id => video.id, :video => { :score => 75 }
       response.should redirect_to(video_path(video))
       video.reload
-      video.score.should == 75
+      video.get_score.should_not == previous_score
     end
 
     it "does not update the score if the vote value is invalid" do
       sign_in video.user
-      old_score = video.score
+      old_score = video.get_score
 
       post :vote, :video_id => video.id, :video => { :score => 101 }
       response.should render_template("videos/show")
       video.reload
-      video.score.should == old_score
+      video.get_score.should == old_score
+    end
+
+    it "returns an error if a non-voter user tries to vote" do
+      sign_in create(:user)
+      old_score = video.get_score
+
+      post :vote, :video_id => video.id, :video => { :score => 99 }
+      response.should render_template("videos/show")
+      video.reload
+      video.get_score.should == old_score
     end
 
     it "redirects to videos path for an invalid video id" do

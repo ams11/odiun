@@ -15,8 +15,9 @@
 #  user_id             :integer
 #  featured            :boolean          default(FALSE)
 #  large_thumbnail_url :string(255)
-#  score               :decimal(10, 4)
 #  genre_id            :integer
+#  score_total         :integer          default(0)
+#  max_score           :integer          default(0)
 #
 
 require 'video_client'
@@ -25,15 +26,35 @@ include VideoClient
 
 class Video < ActiveRecord::Base
 
-  validates_presence_of :name, :url, :unique_id, :user
-  validates_numericality_of :score, :greater_than_or_equal_to => 0.0, :less_than_or_equal_to => 100.0, :message => I18n.t('errors.videos.invalid_rating'), :allow_nil => true
+  validates_presence_of :name, :url, :unique_id, :user, :genre
+  validates_numericality_of :score_total, :max_score, :greater_than_or_equal_to => 0.0, :less_than_or_equal_to => 100.0, :message => I18n.t('errors.videos.invalid_rating'), :allow_nil => true
 
   belongs_to :user
   belongs_to :genre
+  has_many :user_votes
 
   scope :featured,   -> { where(featured: true) }
 
   acts_as_commentable
+
+  def get_score
+    return 0.00 if self.max_score <= 0
+    self.score_total.to_d / self.max_score.to_d
+  end
+
+  def update_vote vote_value, user
+    user_genre_score = UserGenreScore.totals.where(:user => user, :genre => self.genre).limit(1).first
+    if user_genre_score.nil?
+      delta = 0.1
+    else
+      delta = user_genre_score.score / user.primary_score
+    end
+    delta = 1.0 if delta > 1.0
+    modified_vote = delta * vote_value + (1.0 - delta) * (self.get_score) * 10
+    self.score_total += (modified_vote * user.rank.rank)
+    self.max_score += (10 * user.rank.rank)
+    self.save
+  end
 
   def update_video! video_params, genre
     url = video_params[:url]
@@ -83,6 +104,10 @@ class Video < ActiveRecord::Base
                              :provider => type.to_s,
                              :genre => genre,
                              :user => user)
+
+        # upgrade the guest user to rank 1 after they upload their first video
+        # TODO(alex) - temp code. This needs to only happen after an admin has approved this video!!
+        user.upgrade_rank if video.valid?
       end
     end
 

@@ -2,11 +2,12 @@
 #
 # Table name: user_genre_scores
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer          not null
-#  genre_id   :integer          not null
-#  score      :decimal(10, 4)   default(0.0)
-#  score_type :string(255)      not null
+#  id          :integer          not null, primary key
+#  user_id     :integer          not null
+#  genre_id    :integer          not null
+#  score       :decimal(10, 4)   default(0.0)
+#  score_type  :string(255)      not null
+#  video_count :integer
 #
 
 require 'spec_helper'
@@ -23,7 +24,7 @@ describe UserGenreScore do
   it { should belong_to(:user) }
   it { should belong_to(:genre) }
 
-  %w(watched original personal).each do |score_type|
+  %w(videos_watched original_selection personal_content total).each do |score_type|
     it "should validate inclusion of #{score_type}" do
       user_genre_score = UserGenreScore.new(:score_type => score_type)
       user_genre_score.save
@@ -31,7 +32,7 @@ describe UserGenreScore do
     end
   end
 
-  %w(watch foo bar).each do |score_type|
+  %w(videos_watch foo bar).each do |score_type|
     it "should validate inclusion of #{score_type}" do
       user_genre_score = UserGenreScore.new(:score_type => score_type)
       user_genre_score.save

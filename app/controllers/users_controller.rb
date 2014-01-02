@@ -3,19 +3,11 @@ include ApplicationHelper
 class UsersController < ActionController::Base
   layout "application"
 
-  before_filter :authenticate_user!, :only => :dashboard
-  before_filter :load_user, :only => [:dashboard, :vote]
+  before_filter :authenticate_user!, :only => [:dashboard, :vote]
+  before_filter :load_and_verify_user, :only => [:dashboard, :vote]
 
   def dashboard
-    if @user.blank? || (@user != current_user && !current_user.admin?)
-      flash[:alert] = t('errors.users.not_found')
-      redirect_to root_url
-    elsif !@user.voter?
-      redirect_to edit_user_registration_path
-    else
-
-      @videos = current_user.videos.limit(6)
-    end
+    @videos = @user.videos.limit(6)
   end
 
   def vote
@@ -39,6 +31,19 @@ class UsersController < ActionController::Base
         format.json do
           render :json => { :message => error }.to_json, :status => 500
         end
+      end
+    end
+  end
+
+  def load_and_verify_user
+    load_user
+    unless @user.nil?
+      if (@user != current_user && !current_user.admin?)
+        flash[:alert] = t('errors.users.cant_see')
+        redirect_to root_path
+      elsif !@user.voter? && !current_user.admin?
+        flash[:alert] = t('errors.users.cant_vote')
+        redirect_to edit_user_registration_path
       end
     end
   end

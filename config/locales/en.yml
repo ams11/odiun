@@ -33,7 +33,9 @@ en:
   errors:
     generic: "An error has occurred, please try again"
     users:
-      not_found: "User could not be found"
+      cant_see: "You may not view this user's account."
+      cant_vote: "This user does not yet have voting privileges in the Odiun system."
+      not_found: "User could not be found."
     videos:
       cant_embed: "The host of this video does not allow for this video to be shared."
       invalid: "is invalid"

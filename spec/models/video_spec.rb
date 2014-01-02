@@ -15,8 +15,9 @@
 #  user_id             :integer
 #  featured            :boolean          default(FALSE)
 #  large_thumbnail_url :string(255)
-#  score               :decimal(10, 4)
 #  genre_id            :integer
+#  score_total         :integer          default(0)
+#  max_score           :integer          default(0)
 #
 
 require "spec_helper"
@@ -26,10 +27,13 @@ describe Video do
 
   subject { video }
 
+  it { should have_many(:user_votes) }
+
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:url) }
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:unique_id) }
+  it { should validate_presence_of(:genre) }
 
   it "should set featured flag to flase by default" do
     video.featured.should be false

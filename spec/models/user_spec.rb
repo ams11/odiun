@@ -22,6 +22,9 @@
 #  image_file_size        :integer
 #  image_updated_at       :datetime
 #  rank_id                :integer
+#  genre_id               :integer
+#  videos_watched_count   :integer
+#  user_genre_score_id    :integer
 #
 
 require 'spec_helper'
@@ -34,6 +37,8 @@ describe User do
   it { should validate_presence_of(:email) }
   it { should validate_uniqueness_of(:email) }
   it { should have_many(:videos) }
+  it { should have_many(:user_votes) }
+  it { should have_many(:user_genre_scores) }
 
   describe "#vote_videos" do
     it "returns some videos" do

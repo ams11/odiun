@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131210080953) do
+ActiveRecord::Schema.define(version: 20131230024834) do
 
   create_table "comments", force: true do |t|
     t.string   "title",            limit: 50, default: ""
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20131210080953) do
     t.decimal "videos_watched",     precision: 10, scale: 4, null: false
     t.decimal "original_selection", precision: 10, scale: 4, null: false
     t.decimal "personal_content",   precision: 10, scale: 4, null: false
+    t.string  "name"
   end
 
   create_table "roles", force: true do |t|
@@ -49,10 +50,17 @@ ActiveRecord::Schema.define(version: 20131210080953) do
   end
 
   create_table "user_genre_scores", force: true do |t|
-    t.integer "user_id",                                           null: false
-    t.integer "genre_id",                                          null: false
-    t.decimal "score",      precision: 10, scale: 4, default: 0.0
-    t.string  "score_type",                                        null: false
+    t.integer "user_id",                                            null: false
+    t.integer "genre_id",                                           null: false
+    t.decimal "score",       precision: 10, scale: 4, default: 0.0
+    t.string  "score_type",                                         null: false
+    t.integer "video_count"
+  end
+
+  create_table "user_votes", force: true do |t|
+    t.integer "user_id"
+    t.integer "video_id"
+    t.decimal "score",    precision: 10, scale: 0
   end
 
   create_table "users", force: true do |t|
@@ -75,6 +83,9 @@ ActiveRecord::Schema.define(version: 20131210080953) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "rank_id"
+    t.integer  "genre_id"
+    t.integer  "videos_watched_count"
+    t.integer  "user_genre_score_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -88,13 +99,14 @@ ActiveRecord::Schema.define(version: 20131210080953) do
     t.string   "name"
     t.integer  "provider"
     t.integer  "unique_id"
-    t.boolean  "visible",                                      default: false
+    t.boolean  "visible",             default: false
     t.string   "thumbnail_url"
     t.integer  "user_id"
-    t.boolean  "featured",                                     default: false
+    t.boolean  "featured",            default: false
     t.string   "large_thumbnail_url"
-    t.decimal  "score",               precision: 10, scale: 4
     t.integer  "genre_id"
+    t.integer  "score_total",         default: 0
+    t.integer  "max_score",           default: 0
   end
 
 end

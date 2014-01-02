@@ -1,23 +1,27 @@
 0:
   rank: 0
-  videos_watched: 100.0
-  original_selection: 0.0
+  name: "Viewer"
+  videos_watched: 0.0
+  original_selection: 100.0
   personal_content: 0.0
 
 1:
   rank: 1
+  name: "Director"
   videos_watched: 50.0
   original_selection: 20.0
   personal_content: 30.0
 
 2:
   rank: 2
+  name: "Producer"
   videos_watched: 30.0
   original_selection: 10.0
   personal_content: 60.0
 
 3:
   rank: 3
+  name: "Media Mogul"
   videos_watched: 15.0
   original_selection: 0.0
   personal_content: 85.0

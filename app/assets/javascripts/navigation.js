@@ -54,6 +54,7 @@ $(document).on("ready page:change", function() {
 
     $( "#slider-range-min" ).slider({
       value: parseInt($( "#rating_value" ).text()),
+      disabled: $("#rating_value").data("disabled"),
       min: 0,
       max: 100,
       slide: function( event, ui ) {

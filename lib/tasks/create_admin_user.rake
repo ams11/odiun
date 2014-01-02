@@ -9,8 +9,8 @@ namespace :odiun do
       admin_user.roles << admin_role
     end
 
-    User.all.each do |user|
-      user.add_default_role!
+    User.find_each do |user|
+      user.set_defaults!
     end
   end
 end

@@ -15,8 +15,9 @@
 #  user_id             :integer
 #  featured            :boolean          default(FALSE)
 #  large_thumbnail_url :string(255)
-#  score               :decimal(10, 4)
 #  genre_id            :integer
+#  score_total         :integer          default(0)
+#  max_score           :integer          default(0)
 #
 
 FactoryGirl.define do
@@ -28,5 +29,6 @@ FactoryGirl.define do
     thumbnail_url "http://i1.ytimg.com/vi/X3iFhLdWjqc/hqdefault.jpg"
     unique_id "X3iFhLdWjqc"
     provider "youtube"
+    genre { create(:genre) }
   end
 end

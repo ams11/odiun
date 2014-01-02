@@ -6,6 +6,8 @@ class VideosController < ActionController::Base
   before_filter :authenticate_user!, :only => [:new, :create, :update, :destroy, :toggle_feature]
   before_filter :load_video, :only => [:edit, :show, :update, :destroy, :toggle_feature, :vote]
   before_filter :get_genres, :only => [:new, :edit]
+  after_filter  :update_personal_content_ratings, :only => :create
+  after_filter  :create_user_vote, :only => :vote
 
   def new
     @video = Video.new
@@ -16,9 +18,15 @@ class VideosController < ActionController::Base
   end
 
   def show
-    unless @video.present?
+    if @video.nil?
       flash[:alert] = t('errors.videos.not_found')
-      redirect_to videos_url
+      redirect_to videos_url and return
+    else
+      @video_score = (@video.get_score * 100).round
+      if current_user
+        user_vote = UserVote.where(:user => current_user, :video => @video).limit(1).first
+        @user_score = user_vote.score unless user_vote.nil?
+      end
     end
   end
 
@@ -53,13 +61,23 @@ class VideosController < ActionController::Base
   end
 
   def vote
-    old_value = @video.score
-    @video.score = params[:video][:score] rescue old_value
-    @video.save
-    if @video.valid?
+    old_values = { :score_total => @video.score_total, :max_score => @video.max_score }
+
+    success = false
+    if current_user.voter?
+      params[:video] ||= {}
+      new_score = params[:video][:score]
+      if valid_score(new_score)
+        @video.update_vote new_score.to_d / 10, current_user
+        success = @video.valid?
+      end
+    end
+
+    if success
       redirect_to video_path(@video)
     else
-      @video.score = old_value
+      @video.score_total = old_values[:score_total]
+      @video.max_score = old_values[:max_score]
       render :show
     end
   end
@@ -76,8 +94,8 @@ class VideosController < ActionController::Base
   end
 
   def index
-    @videos = Video.all.order(:score).limit(8)
-    @featured_vids = Video.featured.order(:score).limit(8)
+    @videos = Video.all.order(:max_score).limit(8)
+    @featured_vids = Video.featured.order(:max_score).limit(8)
     if @featured_vids.count == 0
       @featured_vids = @videos.limit(8)
     end
@@ -94,6 +112,13 @@ class VideosController < ActionController::Base
     end
   end
 
+  protected
+
+  def valid_score score_value
+    return false if score_value.nil?
+    score_value.to_d.between?(0.0, 100.0)
+  end
+
   private
 
   def video_params
@@ -108,6 +133,25 @@ class VideosController < ActionController::Base
       respond_to do |format|
         format.html { redirect_to videos_path }
         format.json { render :json => { :error => t('errors.videos.notfound') }.to_json, :status => 500 }
+      end
+    end
+  end
+
+  def update_personal_content_ratings
+    if @video && @video.valid? && current_user
+      current_user.update_ratings UserGenreScore::PERSONAL, @video.genre, current_user.videos.count
+    end
+  end
+
+  def create_user_vote
+    params[:video] ||= {}
+    new_score = params[:video][:score]
+    if @video && @video.valid? && current_user && new_score
+      user_vote = UserVote.where(:user => current_user, :video => @video).limit(1).first
+      if user_vote.nil?
+        UserVote.create(:user => current_user, :video => @video, :score => new_score.to_d)
+      else
+        user_vote.update_attribute(:score, new_score.to_d)
       end
     end
   end

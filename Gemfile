@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'devise'
 gem 'paperclip', '~> 3.0'
+gem 'hirb'
 
 gem 'acts_as_commentable'
 

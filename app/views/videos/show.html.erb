@@ -16,7 +16,7 @@
       <table>
           <tr>
             <td width="25%" height="120" align="left" valign="top">
-              <div class="video-percentage"><%= @video.score.round rescue "" %>%</div>
+              <div class="video-percentage"><%= @video_score %>%</div>
               <div class="video-more-user">
                 <%= link_to t(:more_from, :email => @video.user.email), "#" %>
               </div>
@@ -26,22 +26,29 @@
             </td>
           </tr>
           <tr>
-            <td height="55" align="left" valign="top"><div class="video-social">SOCIAL MEDIA FPO</div></td>
+            <td height="55" align="left" valign="top">
+              <div class="video-social">
+                <%= pluralize(@video.user_votes.count, "Vote") %><br/>
+                SOCIAL MEDIA FPO
+              </div>
+            </td>
           </tr>
       </table>
     </div>
-    <div class="video-statsplus-box">
-      <%= form_for @video, :url => video_vote_url(@video), :html => { :method => :post } do |f| %>
-          <div class="rating_container">
-            <div><span>Vote on this video. </span>Your score: <span id="rating_value" ><%= @video.score || 50 %>%</span></div>
-            <div id="slider-range-min"></div>
-            <%= f.hidden_field :score, :value => (@video.score || 50) %>
-            <%= f.submit "Vote" %>
-          </div>
-      <% end %>
-    </div>
+    <% if user_can_vote?(current_user) %>
+        <div class="video-statsplus-box">
+          <%= form_for @video, :url => video_vote_url(@video), :html => { :method => :post } do |f| %>
+              <div class="rating_container">
+                <div><span>Vote on this video. </span>Your score: <span id="rating_value" data-disabled="<%= !@user_score.nil? %>"><%= @user_score || 50 %>%</span></div>
+                <div id="slider-range-min"></div>
+                <%= f.hidden_field :score, :value => (@user_score || 50) %>
+                <%= f.submit "Vote" %>
+              </div>
+          <% end %>
+        </div>
+    <% end %>
     <div class="video-comments-box">
-
+      Comments
     </div>
   </div>
 

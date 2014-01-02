@@ -9,13 +9,23 @@ Dir[Rails.root.join("db/seed/*.yml")].each do |f|
   klass = f.split("/").last.slice(0..-5).classify.constantize
   yaml_data = YAML::load_file(f)
   yaml_data.each do |name, value|
-    value.each do |n, v|
-      if klass.where(n => v).empty?
+    if klass.where(value).empty?
+      # if there's more than one attribute in the YAML file, treat the first one as the primary key, and update the record if one exists with this primary key, but different other attribute values
+      if value.count > 1
+        existing = klass.where(value.first[0] => value.first[1])
+        if existing.empty?
+          puts "Creating #{klass.name} '#{name}'"
+          klass.create(value)
+        else
+          puts "Updating #{klass.name} '#{name}'"
+          existing[0].update_attributes(value)
+        end
+      else
         puts "Creating #{klass.name} '#{name}'"
         klass.create(value)
-      else
-        puts "a #{klass.name} '#{name}' already exists"
       end
+    else
+      puts "a #{klass.name} '#{name}' already exists"
     end
   end
 end

@@ -15,6 +15,7 @@ describe Genre do
 
   it { should validate_presence_of(:name) }
   it { should have_many(:videos) }
+  it { should have_many(:user_genre_scores) }
 
   %w(Action Drama Comedy Horror).each do |name|
     it "should validate inclusion of #{name}" do
