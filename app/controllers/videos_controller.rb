@@ -22,10 +22,14 @@ class VideosController < ActionController::Base
       flash[:alert] = t('errors.videos.not_found')
       redirect_to videos_url and return
     else
-      @video_score = (@video.get_score * 100).round
+      @video_score = (@video.get_score * 100 / 3).round
       if current_user
         user_vote = UserVote.where(:user => current_user, :video => @video).limit(1).first
-        @user_score = user_vote.score unless user_vote.nil?
+        unless user_vote.nil?
+          @user_score_emotion = user_vote.score_emotion
+          @user_score_intellect = user_vote.score_intellect
+          @user_score_entertain = user_vote.score_entertain
+        end
       end
     end
   end
@@ -66,9 +70,9 @@ class VideosController < ActionController::Base
     success = false
     if current_user.voter?
       params[:video] ||= {}
-      new_score = params[:video][:score]
-      if valid_score(new_score)
-        @video.update_vote new_score.to_d / 10, current_user
+      new_score = score_params
+      if valid_score?(new_score)
+        @video.update_vote (new_score[:score_emotion] + new_score[:score_intellect] + new_score[:score_entertain]) / 10, current_user
         success = @video.valid?
       end
     end
@@ -114,15 +118,22 @@ class VideosController < ActionController::Base
 
   protected
 
-  def valid_score score_value
-    return false if score_value.nil?
-    score_value.to_d.between?(0.0, 100.0)
+  def valid_score? score_values
+    return false if score_values.nil? || score_values.empty?
+    score_values.each do |_, value|
+      return false unless value.to_d.between?(0.0, 100.0)
+    end
+    return true
   end
 
   private
 
   def video_params
     params.require(:video).permit(:url)
+  end
+
+  def score_params
+    { :score_emotion => params[:video][:score_emotion].to_i, :score_intellect => params[:video][:score_intellect].to_i, :score_entertain => params[:video][:score_entertain].to_i }
   end
 
   def load_video
@@ -145,13 +156,13 @@ class VideosController < ActionController::Base
 
   def create_user_vote
     params[:video] ||= {}
-    new_score = params[:video][:score]
-    if @video && @video.valid? && current_user && new_score
+    new_score = score_params
+    if @video && @video.valid? && current_user && valid_score?(new_score)
       user_vote = UserVote.where(:user => current_user, :video => @video).limit(1).first
       if user_vote.nil?
-        UserVote.create(:user => current_user, :video => @video, :score => new_score.to_d)
+        UserVote.create(:user => current_user, :video => @video, :score_emotion => new_score[:score_emotion], :score_intellect => new_score[:score_intellect], :score_entertain => new_score[:score_entertain])
       else
-        user_vote.update_attribute(:score, new_score.to_d)
+        user_vote.update_attributes(new_score)
       end
     end
   end

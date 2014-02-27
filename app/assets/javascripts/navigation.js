@@ -52,15 +52,20 @@ $(document).on("ready page:change", function() {
         }
     });
 
-    $( "#slider-range-min" ).slider({
-      value: parseInt($( "#rating_value" ).text()),
-      disabled: $("#rating_value").data("disabled"),
-      min: 0,
-      max: 100,
-      slide: function( event, ui ) {
-        $( "#rating_value" ).text( ui.value + "%" );
-        $("#video_score").val(ui.value);
-      }
-    });
+    $(".slider-container").each(function() {
+        var value = parseInt($(".rating_value", $(this)).text());
+        var disabled = $(".rating_value", $(this)).data("disabled");
 
+        $(".slider-range-min", $(this)).slider({
+          value: value,
+          disabled: disabled,
+          orientation: "vertical",
+          min: 0,
+          max: 100,
+          slide: function( event, ui ) {
+            $(".rating_value", $(this).parent() ).text( ui.value + "%" );
+            $(".video_score", $(this).parent()).val(ui.value);
+          }
+        });
+    });
 });

@@ -39,10 +39,33 @@
         <div class="video-statsplus-box">
           <%= form_for @video, :url => video_vote_url(@video), :html => { :method => :post } do |f| %>
               <div class="rating_container">
-                <div><span>Vote on this video. </span>Your score: <span id="rating_value" data-disabled="<%= !@user_score.nil? %>"><%= @user_score || 50 %>%</span></div>
-                <div id="slider-range-min"></div>
-                <%= f.hidden_field :score, :value => (@user_score || 50) %>
-                <%= f.submit "Vote" %>
+                <div>
+                  <h2 style="margin:0">Vote on this video</h2>
+                </div>
+                <div class="sliders">
+                    <div class="slider-container">
+                      <div class="title">Emotional Impact</div>
+                      <%= f.hidden_field :score_emotion, :value => (@user_score_emotion || 50), :class => "video_score" %>
+                      Your score: <span class="rating_value" data-disabled="<%= !@user_score_emotion.nil? %>"><%= @user_score_emotion || 50 %>%</span>
+                      <div class="slider-range-min"></div>
+                    </div>
+                    <div class="slider-container">
+                      <div class="title">Intellectually Stimulating</div>
+                      <%= f.hidden_field :score_intellect, :value => (@user_score_intellect || 50), :class => "video_score" %>
+                      Your score: <span class="rating_value" data-disabled="<%= !@user_score_intellect.nil? %>"><%= @user_score_intellect || 50 %>%</span>
+                      <div class="slider-range-min"></div>
+                    </div>
+                    <div class="slider-container">
+                      <div class="title">Entertaining</div>
+                      <%= f.hidden_field :score_entertain, :value => (@user_score_entertain || 50), :class => "video_score" %>
+                      Your score: <span class="rating_value" data-disabled="<%= !@user_score_entertain.nil? %>"><%= @user_score_entertain || 50 %>%</span>
+                      <div class="slider-range-min"></div>
+                    </div>
+                    <p style="clear:both" />
+                </div>
+
+                <% options = @user_score_emotion.nil? ? {} : { :disabled => true } %>
+                <%= f.submit "Vote", options %>
               </div>
           <% end %>
         </div>

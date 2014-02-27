@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131230024834) do
+ActiveRecord::Schema.define(version: 20140227181537) do
 
   create_table "comments", force: true do |t|
     t.string   "title",            limit: 50, default: ""
@@ -60,7 +60,9 @@ ActiveRecord::Schema.define(version: 20131230024834) do
   create_table "user_votes", force: true do |t|
     t.integer "user_id"
     t.integer "video_id"
-    t.decimal "score",    precision: 10, scale: 0
+    t.integer "score_emotion"
+    t.integer "score_intellect"
+    t.integer "score_entertain"
   end
 
   create_table "users", force: true do |t|

@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: user_votes
+#
+#  id              :integer          not null, primary key
+#  user_id         :integer
+#  video_id        :integer
+#  score_emotion   :integer
+#  score_intellect :integer
+#  score_entertain :integer
+#
+
 require 'spec_helper'
 
 describe UserVote do

@@ -7,6 +7,7 @@
 #  videos_watched     :decimal(10, 4)   not null
 #  original_selection :decimal(10, 4)   not null
 #  personal_content   :decimal(10, 4)   not null
+#  name               :string(255)
 #
 
 FactoryGirl.define do

@@ -33,7 +33,7 @@ describe UserGenreScore do
   end
 
   %w(videos_watch foo bar).each do |score_type|
-    it "should validate inclusion of #{score_type}" do
+    it "should validate exclusion of #{score_type}" do
       user_genre_score = UserGenreScore.new(:score_type => score_type)
       user_genre_score.save
       user_genre_score.errors[:score_type].should_not be_blank
