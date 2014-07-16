@@ -58,7 +58,11 @@ class User < ActiveRecord::Base
                     :default_style => :medium,
                     :default_url => '/images/missing.png',
                     :storage => ((Rails.env.production? || Rails.env.staging?) ? :s3 : :filesystem),
-                    :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
+                    :bucket => ENV['S3_ODIUN_BUCKET'],
+                    :s3_credentials => {
+                        :access_key_id => ENV['S3_ODIUN_KEY'],
+                        :secret_access_key => ENV['S3_ODIUN_SECRET']
+                    },
                     :url => (Rails.env.production? || Rails.env.staging?) ? ':s3_alias_url' : '/users/:id/:style/:basename.:extension',
                     :s3_host_alias => "s3-us-west-1.amazonaws.com/odiun-staging",
                     :path => (Rails.env.production? || Rails.env.staging?) ? 'users/:id/:style/:basename.:extension' : ':rails_root/public/users/:id/:style/:basename.:extension'
