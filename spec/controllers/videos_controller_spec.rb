@@ -97,5 +97,10 @@ describe VideosController do
     end
   end
 
+  describe "DELETE #destroy" do
+    it "successfully deletes a video" do
+      pending "add test!"
+    end
+  end
 
 end

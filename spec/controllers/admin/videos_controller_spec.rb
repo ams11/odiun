@@ -14,6 +14,31 @@ describe Admin::VideosController do
         expect(response.code).to eq("200")
       end
     end
+
+    describe "GET #show" do
+      it "redirects to the edit page" do
+        video = create(:video)
+
+        get :show, :id => video.id
+        response.should redirect_to(edit_admin_video_path(video.id))
+      end
+    end
+
+    describe "GET #edit" do
+      it "returns success" do
+        video = create(:video)
+
+        get :edit, :id => video.id
+        expect(response.code).to eq("200")
+      end
+
+      it "redirects to videos#index for an invalid video" do
+        video = create(:video)
+
+        get :edit, :id => video.id + rand(1000..1100)
+        response.should redirect_to(admin_videos_path)
+      end
+    end
   end
 
   describe "when an admin user isn't signed in" do
