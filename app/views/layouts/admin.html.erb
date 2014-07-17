@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head>
+  <title>Odiun Admin</title>
+  <%= stylesheet_link_tag    "admin", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id='wrapper'>
+
+  <div id="header">
+    <ul id="login-nav">
+        <li>Logged in as: <%= current_user.email %></li>
+        <li><%= link_to(t(:dashboard), user_dashboard_path(current_user)) %></li>
+        <li><%= link_to(t(:logout), destroy_user_session_path, :method => :delete) %></li>
+        <li><%= link_to t(:home), root_url %></li>
+    </ul>
+    <%= link_to image_tag("odiun-logo01.png", :id => "navlogo", :title => t(:admin_text), :alt => t(:admin_text)), admin_root_url %>
+    <h1><%= link_to t(:administration), admin_root_url, :title => t(:admin_text) %></h1>
+    <div id="progress"><%= image_tag 'admin/progress.gif' %> <%= t(:loading) %>...</div>
+  </div>
+
+  <div id="admin-menu">
+    <ul>
+      <%= render :partial => "admin/shared/tabs" %>
+    </ul>
+    <br class="clear" />
+  </div>
+
+  <div id="sub-menu">
+    <%= yield :sub_menu %>
+    <br class="clear" />
+  </div>
+
+  <div class="<%= 'with-sidebar ' if content_for?(:sidebar) %> clear tile_bg" id="content">
+
+    <%= render :partial => "shared/flash_messages", :locals => {} %>
+
+    <%= yield %>
+
+    <% if content_for?(:sidebar) %>
+      <br class="clear" />
+      <div id="sidebar">
+        <%= yield :sidebar %>
+      </div>
+    <% end %>
+
+  </div>
+
+  <div id="footer">
+    <p></p>
+  </div>
+
+
+</div>
+
+</body>
+</html>

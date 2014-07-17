@@ -3,8 +3,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <head>
   <title>Odiun</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "all", media: "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -27,7 +27,7 @@
               </div>
             </div>
             <div class="header02">
-                <%= link_to image_tag("odiun-logo01.png", :style => "height: 69px; width: 154px; border: 0"), root_url %>
+                <%= link_to image_tag("odiun-logo01.png"), root_url %>
             </div>
             <div class="header01-03">
               <%= link_to content_tag(:div, t(:video_upload), :class => "upload-video-button"), new_video_url %>
@@ -35,13 +35,12 @@
         </div>
       </div>
 
-      <p class="notice" style="display:<%= notice.blank? ? "none" : "" %>"><%= notice %></p>
-      <p class="alert" style="display:<%= alert.blank? ? "none" : "" %>"><%= alert %></p>
-    <%= yield %>
+      <%= render :partial => "shared/flash_messages", :locals => {} %>
+
+      <%= yield %>
 
     </div>
 
-<%= render :partial => "devise/shared/footer", :locals => {} %>
-
+    <%= render :partial => "devise/shared/footer", :locals => {} %>
 </body>
 </html>

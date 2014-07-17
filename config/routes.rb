@@ -13,6 +13,14 @@ Odiun::Application.routes.draw do
     get :vote
   end
 
+  namespace :admin do
+    root 'overview#index'
+
+    resources :users
+    resources :videos
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

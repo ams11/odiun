@@ -22,6 +22,8 @@
 en:
   about: "About Odiun"
   account: "Manage Account"
+  administration: "Administration"
+  admin_text: "Odiun Administration"
   are_you_sure: "Are you sure?"
   blog: "Blog"
   contact_us: "Contact Us"
@@ -33,8 +35,10 @@ en:
   errors:
     generic: "An error has occurred, please try again"
     users:
+      admin: "This user does not have Administrator priviliges."
       cant_see: "You may not view this user's account."
       cant_vote: "This user does not yet have voting privileges in the Odiun system."
+      must_sign_in: "You need to sign in or sign up before continuing"
       not_found: "User could not be found."
     videos:
       cant_embed: "The host of this video does not allow for this video to be shared."
@@ -46,6 +50,7 @@ en:
       url_invalid: "is invalid. Couldn't parse the video url"
   faq: "FAQ"
   genre: "Genre"
+  loading: "Loading"
   login: "Login"
   logout: "Logout"
   more_from: "More from %{email}"
@@ -54,6 +59,8 @@ en:
   show_more: "Show More Videos"
   submit: "Submit"
   unfeature: "Un-feature"
+  user: "User"
+  video: "Video"
   video_upload: "Submit a video"
   video_url: "Video URL"
   videos_my: "My Videos"

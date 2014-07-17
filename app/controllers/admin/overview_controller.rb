@@ -1,0 +1,11 @@
+load 'admin/base_admin_controller.rb'
+
+module Admin
+  class OverviewController < Admin::BaseController
+
+    def index
+      @videos_count = Video.count
+      @users_count = User.count
+    end
+  end
+end

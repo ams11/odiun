@@ -1,0 +1,37 @@
+.alert, .notice, .errorExplanation
+{
+  padding:1em;
+  margin-bottom: 1em;
+	background: #fcffb9;
+	color: #000;
+	border-color: #666;
+	border-radius: 3px;
+	box-shadow: 0px 3px 8px rgba(0,0,0,0.3);
+  font-weight: normal;
+  font-size: 120%;
+}
+
+.errorExplanation {
+
+  h2 {
+    font-size: 1.75em;
+    padding-left: 40px;
+    padding-top:5px;
+    background: image-url('icons/error.png') center left no-repeat;
+    min-height: 32px;
+		line-height: 1.1em;
+		margin:0;
+  }
+
+  ul {
+    color: #C43434;
+    list-style: square;
+  }
+
+}
+
+.popup-dialog {
+  display: none;
+}
+
+.clear { clear: both }
