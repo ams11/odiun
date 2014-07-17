@@ -1,11 +1,14 @@
 module NavigationHelper
 
-  def link_to_delete(url, options={})
+  def link_to_delete(video, options={})
     name = options[:name] || t(:delete)
-    link_to name, "#",
-      :class => "delete-resource",
-      :data => { :confirm => t(:are_you_sure),
-                 :url => url }
+    name = (icon('delete') + ' ' + name) unless options[:no_icon]
+    options.delete(:no_icon)
+    url = options[:url] || video_url(video)
+    link_to name, url,
+      :class => options[:class_name] || "delete-resource",
+      :data  => { :confirm => options[:confirm] || t(:are_you_sure),
+                  :url => url }
   end
 
   def link_to_feature(url, options={})
@@ -13,6 +16,29 @@ module NavigationHelper
     link_to name, "#",
       :class => "toggle-feature",
       :data => { :url => url }
+  end
+
+  def link_to_admin_edit(video, options={})
+    name = options[:name] || t(:edit)
+    name = (icon('edit') + ' ' + name) unless options[:no_icon]
+    url = options[:url] || edit_admin_video_url(video)
+    link_options = options.key?(:class_name) ? { :class => options[:class_name] } : {}
+    link_to name, url, link_options
+  end
+
+  def link_to_view(video, options={})
+    name = icon(options[:icon] || 'play') + ' ' + (options[:name] || t(:watch))
+    url = options[:url] || video_url(video)
+    link_to name, url, :title => video.try(:name)
+  end
+
+  def icon(icon_name = nil, options = {})
+    class_option = options[:no_class] ? {} : { :class => "icon" }
+    icon_name.blank? ? '' : image_tag("admin/icons/#{icon_name}.png", class_option)
+  end
+
+  def button(text, icon_name = nil, button_type = 'submit', options={})
+    button_tag(content_tag('span', icon(icon_name) + ' ' + text), options.merge(:type => button_type))
   end
 
   def tab(*args)

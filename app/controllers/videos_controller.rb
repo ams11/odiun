@@ -22,7 +22,7 @@ class VideosController < ActionController::Base
       flash[:alert] = t('errors.videos.not_found')
       redirect_to videos_url and return
     else
-      @video_score = (@video.get_score * 100 / 3).round
+      @video_score = @video.show_score
       if current_user
         user_vote = UserVote.where(:user => current_user, :video => @video).limit(1).first
         unless user_vote.nil?
@@ -93,7 +93,7 @@ class VideosController < ActionController::Base
       render :json => t('errors.videos.other_user').to_json, :status => 500
     else
       Video.destroy @video
-      render :json => "Success".to_json, :status => :ok
+      render :json => { :message => t(:video_deleted, :name => @video.name) }.to_json, :status => :ok
     end
   end
 
@@ -143,7 +143,7 @@ class VideosController < ActionController::Base
     if @video.nil?
       respond_to do |format|
         format.html { redirect_to videos_path }
-        format.json { render :json => { :error => t('errors.videos.notfound') }.to_json, :status => 500 }
+        format.json { render :json => { :error => t('errors.videos.not_found') }.to_json, :status => 500 }
       end
     end
   end

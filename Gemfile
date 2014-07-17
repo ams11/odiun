@@ -35,7 +35,9 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'devise'
 gem 'paperclip', '~> 3.0'
-gem 'hirb'
+gem 'kaminari'
+gem 'ransack'
+gem 'canonical-rails', github: 'jumph4x/canonical-rails'
 
 gem 'acts_as_commentable'
 
@@ -64,7 +66,15 @@ end
 
 group :development do
   gem 'annotate', ">=2.6.0"
+  gem 'rack-mini-profiler'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'flay'
+  gem 'hirb'
+  gem 'lol_dba'
+  gem 'simplecov', '~> 0.7.1'
 end
+
 
 group :test, :ci do
   gem 'capybara'

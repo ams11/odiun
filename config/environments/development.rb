@@ -29,4 +29,6 @@ Odiun::Application.configure do
 
   # set default_url_options for devise
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  config.action_controller.asset_host = 'localhost:3000'
 end

@@ -86,7 +86,7 @@ a:active, a:visited {
 }
 
 #content.with-sidebar {
-  background: #fff image-url('admin/content-back.png') right top repeat-y;
+  background: #fff image-url('/assets/admin/content-back.png') right top repeat-y;
   padding-right: 340px;
   position: relative;
   min-width:880px;
@@ -166,7 +166,7 @@ a:active, a:visited {
       color: #363 !important;
       margin-left: -20px;
       padding-left: 30px;
-      background: image-url('admin/menu-current.png') left center no-repeat;
+      background: image-url('/assets/admin/menu-current.png') left center no-repeat;
     }
   }
 
@@ -240,7 +240,7 @@ a:active, a:visited {
   border-top: 1px solid #4B83E2;
   border-right: 1px solid #34599B;
   border-bottom: 1px solid #41A6F0;
-  background:#154E8C image-url('admin/admin_tab_back.png') repeat-x scroll left top;
+  background:#154E8C image-url('/assets/admin/admin_tab_back.png') repeat-x scroll left top;
 
   ul {
     margin-bottom: -1px;
@@ -291,7 +291,7 @@ a:active, a:visited {
 #progress {
   display:none;
   color:#fff !important;
-  background:#154E8C image-url('admin/admin_tab_back.png') repeat-x scroll left top;
+  background:#154E8C image-url('/assets/admin/admin_tab_back.png') repeat-x scroll left top;
   font-size:170%;
   height:25px;
   left:33%;
@@ -336,7 +336,7 @@ button {
     font-weight: bold;
     padding: 0 20px 0 0;
     text-align: center;
-    background: image-url('admin/buttons/right_01.png') center right no-repeat;
+    background: image-url('/assets/admin/buttons/right_01.png') center right no-repeat;
     font-size: 1.3em;
     outline: none;
 
@@ -347,7 +347,7 @@ button {
       padding: 0 0 0 20px;
       height: 35px;
       line-height: 35px;
-      background: image-url('admin/buttons/left_01.png') center left no-repeat;
+      background: image-url('/assets/admin/buttons/left_01.png') center left no-repeat;
       text-shadow: #efefef 1px 1px 0px;
     }
 
@@ -376,7 +376,7 @@ button:focus { outline: none; }
 }
 
 a.button {
-  background: transparent image-url('admin/buttons/right_01.png') no-repeat scroll top right;
+  background: transparent image-url('/assets/admin/buttons/right_01.png') no-repeat scroll top right;
   display: block;
   float: left;
   margin-right: 6px;
@@ -387,7 +387,7 @@ a.button {
   outline: none;
 
   span {
-    background: transparent image-url('admin/buttons/left_01.png') no-repeat;
+    background: transparent image-url('/assets/admin/buttons/left_01.png') no-repeat;
     display: block;
     line-height: 22px;
     padding: 7px 0 5px 14px;
@@ -464,7 +464,7 @@ a img { border: none }
 
 table.index {
   th {
-    background: #cdcdcd image-url('admin/grid_header_back.png') top left repeat-x;
+    background: #cdcdcd image-url('/assets/admin/grid_header_back.png') top left repeat-x;
     padding: 7px 10px;
     border-left: 1px solid #ddd;
     border-top: 1px solid #ddd;
@@ -487,7 +487,7 @@ table.index {
 
   tr.alt td { background-color: #efefef; }
   .green th {
-    background: #cfefa7 image-url('admin/grid_header_back_green.png') top left repeat-x;
+    background: #cfefa7 image-url('/assets/admin/grid_header_back_green.png') top left repeat-x;
     border-left: 1px solid #E4FDB4;
     border-top: 1px solid #E4FDB4;
     border-right: 1px solid #B7CB90;
@@ -612,3 +612,15 @@ legend      { font-weight: bold; font-size:1.2em; margin:0; }
   display: inline-block;
 }
 .clearfix { display: block; }
+
+.provider_logo img {
+  height: 20px;
+}
+
+.youtube_logo {
+  top: 8px;
+}
+
+.vimeo_logo {
+  top: 2px;
+}

@@ -1,3 +1,63 @@
+<table class="index videos-page" id="listing_videos">
+  <tr>
+    <th><%= sort_link @q, :name, t(:name) %></th>
+    <th><%= sort_link @q, :provider, t(:provider) %></th>
+    <th><%= sort_link @q, :created_at, t(:created), { :default_order => "desc" } %></th>
+    <th><%= t(:user) %></th>
+    <th><%= t(:rating) %></th>
+    <th><%= t(:genre).pluralize %></th>
+    <th style="min-width: 200px;"><%= t(:actions) %></th>
+  </tr>
 <% @videos.each do |video| %>
-    <div><%= video.name %></div>
+  <tr class="video<%= video.id %> video-link" title="<%= video.description %>" data-id="<%= video.id %>">
+    <td><%= link_to(truncate(video.name, :length => 100), video_url(video), :title => video.name) %></td>
+    <td class="provider_logo"><%= provider_logo(video.provider) %></td>
+    <td><%= video.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+    <td title="user_id: <%= video.user.id %>"><%= link_to video.user.email, edit_admin_user_url(video.user) %></td>
+    <td class="centered"><%= video.show_score %>%</td>
+    <td></td>
+    <td class="actions">
+      <%= link_to_admin_edit(video) %>&nbsp;&nbsp;<%= link_to_view(video) %>&nbsp;&nbsp;<%= link_to_delete(video, :confirm => t(:delete_confirm, :name => video.name)) %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= paginate @videos unless @videos.is_a? Array %>
+
+<% content_for :sidebar do %>
+    <%= search_form_for [:admin, @q], :url => url_for do |f| %>
+        <div class="box">
+          <h3><%= t(:search) %></h3>
+          <p>
+            <%= f.label :name_cont, t(:name) %><br />
+            <%= f.text_field :name_cont, :size => 40 %>
+          </p>
+          <p>
+            <%= f.label :description_cont, t(:description) %><br />
+            <%= f.text_field :description_cont, :size => 40 %>
+          </p>
+          <p>
+            <%= f.label :user_email_cont, t(:user_email) %><br />
+            <%= f.text_field :user_email_cont, :size => 40 %>
+          </p>
+          <p>
+            <%= f.label :provider %><br />
+            <%= f.select :provider_eq, options_for_select([["Youtube", "youtube", ((params[:q][:provider_eq] rescue nil) == "youtube") ? { :selected => true } : {}],
+                                                           ["Vimeo", "vimeo", ((params[:q][:provider_eq] rescue nil) == "vimeo") ? { :selected => true } : {}]]),
+                         { :include_blank => true } %>
+          </p>
+          <p>
+            <%= f.label :unique_id, t(:video_id) %><br />
+            <%= f.text_field :unique_id_eq %>
+          </p>
+
+          <div>
+            <p class="form-buttons">
+              <%= button t(:search) %>&nbsp;&nbsp;&nbsp;<%= button t(:clear), nil, nil, { :onclick => "clear_search_pane(); return false;"} %>
+            </p>
+          </div>
+        </div>
+    <% end %>
+    </div>
 <% end %>

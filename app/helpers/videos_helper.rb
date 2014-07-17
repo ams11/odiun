@@ -10,4 +10,11 @@ module VideosHelper
   def user_can_comment? user
     user
   end
+
+  def provider_logo provider, options = {}
+    options.merge!(:class => "#{provider}_logo")
+    return image_tag("youtube.png", options) if provider.to_sym == :youtube
+    return image_tag("vimeo.png", options) if provider.to_sym == :vimeo
+    ""
+  end
 end

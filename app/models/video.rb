@@ -28,6 +28,7 @@ class Video < ActiveRecord::Base
 
   validates_presence_of :name, :url, :unique_id, :user, :genre
   validates_numericality_of :score_total, :max_score, :greater_than_or_equal_to => 0.0, :less_than_or_equal_to => 100.0, :message => I18n.t('errors.videos.invalid_rating'), :allow_nil => true
+  validates_uniqueness_of :unique_id, :scope => [:provider], :message => I18n.t('errors.videos.already')
 
   belongs_to :user
   belongs_to :genre
@@ -40,6 +41,10 @@ class Video < ActiveRecord::Base
   def get_score
     return 0.00 if self.max_score <= 0
     self.score_total.to_d / self.max_score.to_d
+  end
+
+  def show_score
+    (self.get_score * 100 / 3).round
   end
 
   def update_vote vote_value, user

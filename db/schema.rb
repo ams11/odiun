@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227181537) do
+ActiveRecord::Schema.define(version: 20140717224833) do
 
   create_table "comments", force: true do |t|
     t.string   "title",            limit: 50, default: ""
@@ -99,8 +99,8 @@ ActiveRecord::Schema.define(version: 20140227181537) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.integer  "provider"
-    t.integer  "unique_id"
+    t.string   "provider"
+    t.string   "unique_id"
     t.boolean  "visible",             default: false
     t.string   "thumbnail_url"
     t.integer  "user_id"
