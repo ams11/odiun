@@ -80,4 +80,6 @@ Odiun::Application.configure do
 
   # set default_url_options for devise
   config.action_mailer.default_url_options = { :host => 'http://odiun-staging.herokuapp.com/' }
+
+  config.action_controller.asset_host = 'odiun-staging.herokuapp.com'
 end
