@@ -22,18 +22,26 @@ $(document).on("ready page:change", function() {
       return false;
     });
 
-    $('body').on('click', '.toggle-feature', function() {
-      var el = $(this);
+    $('body').on('click', '.toggle-feature, .approve-video', function() {
+        var el = $(this);
         $.ajax({
           type: 'POST',
-          url: $(this).attr("data-url"),
+          url: el.data("url"),
           data: {
             _method: 'post'
           },
           dataType: 'json',
           success: function(response) {
-              el.text(el.text() == "Feature" ? "Un-feature" : "Feature");
-              show_flash_notice_only(response);
+              if (el.data("action") == "feature")
+              {
+                el.text(el.text() == "Feature" ? "Un-feature" : "Feature");
+              }
+              else if (el.data("action") == "approve")
+              {
+                  el.parents("#unapproved").hide();
+                  $("#approved", el.parents(".approve-container")).show();
+              }
+              show_flash_notice_only(response["message"]);
           },
           error: function(response, textStatus, errorThrown) {
               show_flash_alert_from_response(response);

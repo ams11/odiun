@@ -16,8 +16,13 @@ Odiun::Application.routes.draw do
   namespace :admin do
     root 'overview#index'
 
-    resources :users
-    resources :videos
+    resources :users do
+      resources :videos, :only => :index
+    end
+
+    resources :videos do
+      post :approve
+    end
   end
 
 

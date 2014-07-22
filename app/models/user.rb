@@ -92,7 +92,14 @@ class User < ActiveRecord::Base
   end
 
   def voter?
+    return false if self.rank.nil?
     self.rank.rank > 0
+  end
+
+  def show_roles
+    roles = ""
+    self.roles.each {|role| roles += "#{role.name.capitalize}, " unless role.name == "user" }
+    roles
   end
 
   def vote_videos

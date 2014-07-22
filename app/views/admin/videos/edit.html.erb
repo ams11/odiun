@@ -1,1 +1,59 @@
-Video `<%= @video.name %>`
+<div class="video_fields" style="width: 445px; margin-left: 0px;">
+    <fieldset style="border-radius: 12px; margin-left: 0px;">
+      <legend>Video</legend>
+        <iframe id="player" type="text/html" width="400" height="244" src="<%= @video.url %>" frameborder="0" style="margin-left: 10px;"></iframe>
+
+      <div class="toolbar">
+        <div class="stats video_stats_summary highlight-text">
+          <%= pluralize(@video.user_votes.length, "Vote") %>
+        </div>
+        <div class="highlight-text">Icarus Rating: <span class="red-flag"><%= @video.show_score %>%</span></div>
+        <div>Total Score: <%= @video.score_total.to_f %>; Max Possible Score: <%= @video.max_score.to_f %></div>
+      </div>
+    </fieldset>
+
+    <fieldset style="border-radius: 12px; margin-top: 20px;" class="approve-container">
+        <legend>Actions</legend>
+        <% if @video.featured? %>
+            <div>This video is currently <span class="highlight-text">featured</span>. <span class="resource-links">[<%= link_to t(:change), "#", :class => "bolded" %>]</span></div>
+        <% end %>
+        <div style="display: <%= @video.approved? ? "block" : "none" %>;" id="approved">This video <span class="highlight-text">has been approved</span> by an Administrator and can now be seen on Odiun.com</div>
+        <div style="display: <%= @video.approved? ? "none" : "block" %>;" id="unapproved">This video <span class="highlight-text red-flag">has not yet been approved</span> by an Administrator and cannot currently be seen on Odiun.com. <span class="resource-links">[<%= approve_video_link(@video) %>]</span></div>
+    </fieldset>
+</div>
+
+<div class="video_fields">
+    <fieldset>
+      <legend>Video Properties</legend>
+      <table>
+        <tr>
+          <td>Provider:</td>
+          <td><%= provider_logo(@video.provider) %></td>
+        </tr>
+        <tr>
+          <td>Name:</td>
+          <td><%= @video.name %></td>
+        </tr>
+        <tr>
+          <td>Genre:</td>
+          <td><%= @video.genre.try(:name) %></td>
+        </tr>
+        <tr>
+          <td>Shared:</td>
+          <td><%= @video.created_at.to_s(:long) %></td>
+        </tr>
+        <tr>
+          <td>Shared by:</td>
+          <td><%= link_to @video.user.email, edit_admin_user_url(@video.user) %></td>
+        </tr>
+        <tr>
+          <td>Embed URL:</td>
+          <td><%= @video.url %></td>
+        </tr>
+        <tr>
+          <td>Description:</td>
+          <td><div style="max-height:200px; overflow-y: scroll;"><%= raw(@video.description) %></div></td>
+        </tr>
+      </table>
+    </fieldset>
+</div>

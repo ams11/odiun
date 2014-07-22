@@ -39,6 +39,12 @@ describe Admin::VideosController do
         response.should redirect_to(admin_videos_path)
       end
     end
+
+    describe "POST #approve" do
+      it "can change the approved flag to true" do
+        pending "add test"
+      end
+    end
   end
 
   describe "when an admin user isn't signed in" do

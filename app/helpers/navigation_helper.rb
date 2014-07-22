@@ -15,7 +15,8 @@ module NavigationHelper
     name = options[:name] || t(:feature)
     link_to name, "#",
       :class => "toggle-feature",
-      :data => { :url => url }
+      :data => { :url => url,
+                 :action => "feature" }
   end
 
   def link_to_admin_edit(video, options={})
@@ -30,6 +31,17 @@ module NavigationHelper
     name = icon(options[:icon] || 'play') + ' ' + (options[:name] || t(:watch))
     url = options[:url] || video_url(video)
     link_to name, url, :title => video.try(:name)
+  end
+
+  def approve_video_link video, options={}
+    return "" if video.nil? || video.approved?
+
+    name = options[:name] || t(:approve)
+    url = options[:url] || admin_video_approve_url(video)
+    link_to name, url,
+            :class => "bolded approve-video",
+            :data => { :url => url,
+                       :action => "approve"}
   end
 
   def icon(icon_name = nil, options = {})

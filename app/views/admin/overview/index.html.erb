@@ -1,5 +1,6 @@
 <h1>Odiun Admin Overview</h1>
 
 <h2>Currently in our system, there are:</h2>
-<div><%= pluralize(@videos_count, t(:video)) %></div>
-<div><%= pluralize(@users_count, t(:user)) %></div>
+<div><%= link_to pluralize(@videos_count, t(:video)), admin_videos_url %></div>
+<div><%= link_to(pluralize(@unapproved_count, t(:video)), admin_videos_url(:q => { :approved_eq => false })) %> awaiting Administrator approval (<%= link_to(pluralize(@approved_count, t(:video)), admin_videos_url(:q => { :approved_eq => true })) %> approved)</div>
+<div><%= link_to pluralize(@users_count, t(:user)), admin_users_url %></div>

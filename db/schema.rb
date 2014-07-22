@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140717224833) do
+ActiveRecord::Schema.define(version: 20140722032914) do
 
   create_table "comments", force: true do |t|
     t.string   "title",            limit: 50, default: ""
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 20140717224833) do
     t.integer  "genre_id"
     t.integer  "score_total",         default: 0
     t.integer  "max_score",           default: 0
+    t.boolean  "approved",            default: false
   end
 
 end

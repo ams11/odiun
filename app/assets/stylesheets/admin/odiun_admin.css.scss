@@ -624,3 +624,19 @@ legend      { font-weight: bold; font-size:1.2em; margin:0; }
 .vimeo_logo {
   top: 2px;
 }
+
+.toolbar {
+  > div {
+    float: left;
+    padding-right: 20px;
+  }
+}
+
+.highlight-text {
+  font-weight: bold;
+  color: blue;
+}
+
+.red-flag {
+  color: red !important;
+}

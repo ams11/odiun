@@ -109,10 +109,10 @@ class VideosController < ActionController::Base
 
   def toggle_feature
     if @video.nil?
-      render :json => t('errors.videos.not_found').to_json, :status => 500
+      render :json => { :error => t('errors.videos.not_found') }.to_json, :status => 500
     else
       @video.update_attribute(:featured, !@video.featured)
-      render :json => "Success".to_json, :status => :ok
+      render :json => { :message => "Success" }.to_json, :status => :ok
     end
   end
 

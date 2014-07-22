@@ -30,9 +30,38 @@
 
 }
 
-.popup-dialog {
-  display: none;
+.video_fields, .edit-extra-data {
+  border-radius: 12px;
+  width: 48%;
+  float: left;
+  margin-left: 1%;
+  max-width: 800px;
+
+  fieldset {
+    background-color: #fff;
+    border-radius: 12px;
+
+    legend {
+      background-color: #fff;
+      border-radius: 5px;
+    }
+  }
+
+  td {
+    vertical-align: top;
+  }
+
+  tr td:first-child {
+    padding-left: 20px;
+    font-weight: bold;
+  }
+
+  tr td:last-child {
+    padding-left: 40px;
+  }
 }
 
+.popup-dialog { display: none; }
 .clear { clear: both }
 .centered { text-align: center; }
+.bolded { font-weight: bold; }

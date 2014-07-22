@@ -8,8 +8,8 @@
 #  created_at          :datetime
 #  updated_at          :datetime
 #  name                :string(255)
-#  provider            :integer
-#  unique_id           :integer
+#  provider            :string(255)
+#  unique_id           :string(255)
 #  visible             :boolean          default(FALSE)
 #  thumbnail_url       :string(255)
 #  user_id             :integer
@@ -18,6 +18,7 @@
 #  genre_id            :integer
 #  score_total         :integer          default(0)
 #  max_score           :integer          default(0)
+#  approved            :boolean          default(FALSE)
 #
 
 FactoryGirl.define do

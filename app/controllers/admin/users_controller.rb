@@ -4,7 +4,18 @@ module Admin
   class UsersController < Admin::BaseController
 
     def index
-      @users = User.all
+      params[:q] ||= {}
+      page = params[:page] || 1
+      search_params = params[:q]
+
+      @q = User.includes(:videos).search(search_params)
+      @q.sorts = 'email' if @q.sorts.empty?
+      @users = @q.result(distinct: true).page(page).per(15)
+
+      @ranks = []
+      Rank.find_each do |rank|
+        @ranks << [rank.name, rank.id, ((params[:q][:rank_id_eq].to_s rescue nil) == rank.id.to_s) ? { :selected => true } : {}]
+      end
     end
 
     def edit

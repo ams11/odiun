@@ -1,3 +1,54 @@
-<% @users.each do |user| %>
-    <div><%= user.email %></div>
+<table class="index videos-page" id="listing_videos">
+  <tr>
+    <th><%= sort_link @q, :email, t(:email) %></th>
+    <th><%= t(:name) %></th>
+    <th><%= t(:original_genre) %></th>
+    <th><%= t(:voting_level) %></th>
+    <th style="width:80px"><%= t(:roles) %></th>
+    <th style="width:60px"><%= t(:video).pluralize %></th>
+    <th><%= t(:actions) %></th>
+  </tr>
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to(user.email, user_dashboard_url(user)) %></td>
+        <td><%= user.name %></td>
+        <td><%= user.original_genre.try(:name) %></td>
+        <td><%= user.rank.try(:name) %></td>
+        <td><%= user.show_roles %></td>
+        <td><%= link_to(pluralize(user.videos.length, t(:video)), admin_user_videos_url(user)) %></td>
+        <td><%= link_to_admin_edit(user, :url => edit_admin_user_url(user)) %></td>
+      </tr>
+  <% end %>
+</table>
+
+<%= paginate @users unless @users.is_a? Array %>
+
+<% content_for :sidebar do %>
+    <%= search_form_for [:admin, @q], :url => url_for do |f| %>
+        <div class="box">
+          <h3><%= t(:search) %></h3>
+          <p>
+            <%= f.label :email_cont, t(:email) %><br />
+            <%= f.text_field :email_cont, :size => 40 %>
+          </p>
+          <p>
+            <%= f.label :first_name_cont, t(:first_name) %><br />
+            <%= f.text_field :first_name_cont, :size => 40 %>
+          </p>
+          <p>
+            <%= f.label :last_name_cont, t(:last_name) %><br />
+            <%= f.text_field :last_name_cont, :size => 40 %>
+          </p>
+          <p>
+            <%= f.label :voting_level %><br />
+            <%= f.select :rank_id_eq, options_for_select(@ranks), { :include_blank => "All" } %>
+          </p>
+          <div>
+            <p class="form-buttons">
+              <%= button t(:search) %>&nbsp;&nbsp;&nbsp;<%= button t(:clear), nil, nil, { :onclick => "clear_search_pane(); return false;"} %>
+            </p>
+          </div>
+        </div>
+    <% end %>
+    </div>
 <% end %>

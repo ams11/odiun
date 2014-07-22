@@ -1,11 +1,16 @@
+<% unless @user.nil? %>
+    <h2>Videos shared by user <%= link_to @user.email, edit_admin_user_url(@user) %></h2>
+<% end %>
+
 <table class="index videos-page" id="listing_videos">
   <tr>
     <th><%= sort_link @q, :name, t(:name) %></th>
-    <th><%= sort_link @q, :provider, t(:provider) %></th>
+    <th style="min-width: 65px;"><%= sort_link @q, :provider, t(:provider) %></th>
     <th><%= sort_link @q, :created_at, t(:created), { :default_order => "desc" } %></th>
+    <th style="min-width: 70px;"><%= sort_link @q, :approved, t(:approved), { :default_order => "desc" } %></th>
     <th><%= t(:user) %></th>
     <th><%= t(:rating) %></th>
-    <th><%= t(:genre).pluralize %></th>
+    <th><%= t(:genre) %></th>
     <th style="min-width: 200px;"><%= t(:actions) %></th>
   </tr>
 <% @videos.each do |video| %>
@@ -13,9 +18,10 @@
     <td><%= link_to(truncate(video.name, :length => 100), video_url(video), :title => video.name) %></td>
     <td class="provider_logo"><%= provider_logo(video.provider) %></td>
     <td><%= video.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+    <td><%= video.approved?.to_s.capitalize %></td>
     <td title="user_id: <%= video.user.id %>"><%= link_to video.user.email, edit_admin_user_url(video.user) %></td>
     <td class="centered"><%= video.show_score %>%</td>
-    <td></td>
+    <td><%= video.genre.try(:name) %></td>
     <td class="actions">
       <%= link_to_admin_edit(video) %>&nbsp;&nbsp;<%= link_to_view(video) %>&nbsp;&nbsp;<%= link_to_delete(video, :confirm => t(:delete_confirm, :name => video.name)) %>
     </td>
@@ -46,6 +52,12 @@
             <%= f.select :provider_eq, options_for_select([["Youtube", "youtube", ((params[:q][:provider_eq] rescue nil) == "youtube") ? { :selected => true } : {}],
                                                            ["Vimeo", "vimeo", ((params[:q][:provider_eq] rescue nil) == "vimeo") ? { :selected => true } : {}]]),
                          { :include_blank => true } %>
+          </p>
+          <p>
+            <%= f.label :approved, "#{t(:approved)}?" %><br />
+            <%= f.select :approved_eq, options_for_select([["Show un-approved only", false, ((params[:q][:approved_eq] rescue nil) == "false") ? { :selected => true } : {}],
+                                                           ["Show approved only", true, ((params[:q][:approved_eq] rescue nil) == "true") ? { :selected => true } : {}]]),
+                         { :include_blank => "Show all videos" } %>
           </p>
           <p>
             <%= f.label :unique_id, t(:video_id) %><br />
